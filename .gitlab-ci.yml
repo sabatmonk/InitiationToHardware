@@ -1,0 +1,15 @@
+image: sabatmonk/doctoolchain-docker
+
+html:
+  script:
+    - .training_guide/english generateHTML
+  artifacts:
+    paths:
+      - "html5/*"
+
+pdf:
+  script:
+    - .training_guide/english generatePDF
+  artifacts:
+    paths:
+      - "*.pdf"

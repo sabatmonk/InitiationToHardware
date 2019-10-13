@@ -7,8 +7,7 @@ outputPath = 'build'
 inputPath = '.'
 
 inputFiles = [
-        [file: 'embedded-guide-en.adoc', formats: ['html','pdf','docbook']],
-        [file: 'ppt/Demo.pptx.ad', formats: ['revealjs']]
+        [file: 'embedded-guide-en.adoc', formats: ['html','pdf','docbook']]
              ]
 
 taskInputsDirs = ["${inputPath}/src",
