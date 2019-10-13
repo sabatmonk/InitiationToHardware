@@ -1,0 +1,20 @@
+:homepage:
+
+:keywords: hardware-architecture, documentation, arduino, raspberry-pi, embedded
+
+:numbered!:
+**About this project**
+
+[role="lead"]
+Introduction to hardware and embedded
+
+Project created by Sabatmonk
+
+Contributors:
+
+
+Document Revision: 1.1 EN October 2019
+
+(C)
+This document, as a whole or in parts, is free to use by anyone for anything. I simply ask that you
+give due credits when applicable and that you contribute to the project.

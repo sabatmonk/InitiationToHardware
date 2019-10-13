@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Introduction to hardware</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:initial}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1><span class="image"><img src="images/arc42-logo.png" alt="arc42"></span> Introduction to hardware</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#section-introduction">1. Introduction to hardware</a></li>
+<li><a href="#section-physics">2. Physics 101</a></li>
+<li><a href="#section-soldering">3. Soldering</a></li>
+<li><a href="#section-programmation-basics">4. Programming</a>
+<ul class="sectlevel2">
+<li><a href="#_variables_declaration_and_assignations">4.1. Variables, declaration and assignations</a></li>
+<li><a href="#_functions_parameters_and_return_value">4.2. Functions, Parameters and Return Value</a></li>
+<li><a href="#_control_flow">4.3. Control flow</a></li>
+<li><a href="#_resources">4.4. Resources</a></li>
+</ul>
+</li>
+<li><a href="#section-tools">5. tools</a>
+<ul class="sectlevel2">
+<li><a href="#_atom_text_editor_and_platformio_ide">5.1. Atom text editor and PlatformIO IDE</a></li>
+<li><a href="#_breadboard">5.2. Breadboard</a></li>
+<li><a href="#_arduino_nano">5.3. Arduino Nano</a></li>
+<li><a href="#_raspberry_pi">5.4. Raspberry pi</a></li>
+<li><a href="#_resistor">5.5. Resistor</a></li>
+<li><a href="#_led">5.6. LED</a></li>
+<li><a href="#_sensors">5.7. Sensors</a></li>
+</ul>
+</li>
+<li><a href="#_arduino">6. Arduino</a>
+<ul class="sectlevel2">
+<li><a href="#_arduino_specificities">6.1. Arduino specificities</a></li>
+</ul>
+</li>
+<li><a href="#section-arduino-exercises">7. Arduino</a>
+<ul class="sectlevel2">
+<li><a href="#_arduino_specificities_2">7.1. Arduino specificities</a></li>
+<li><a href="#_exercise_1_look_ma_no_connections">7.2. Exercise 1: Look Ma, no connections</a></li>
+<li><a href="#_exercise_2_let_there_be_light">7.3. Exercise 2: Let there be light</a></li>
+<li><a href="#_exercise_3_reading_input">7.4. Exercise 3: Reading Input</a></li>
+<li><a href="#_exercise_4_analogue_vs_digital">7.5. Exercise 4: Analogue vs Digital</a></li>
+<li><a href="#_exercise_5_let_there_be_noise">7.6. Exercise 5: Let There Be Noise</a></li>
+<li><a href="#_exercise_6_turn_that_sh_up_to_11">7.7. Exercise 6: Turn that sh** up to 11</a></li>
+<li><a href="#_exercise_7_let_s_sense_the_world">7.8. Exercise 7: Let’s sense the world</a></li>
+<li><a href="#_exercise_8_good_night_sweet_princes_and_princesses">7.9. Exercise 8: Good night Sweet Princes and Princesses</a></li>
+<li><a href="#_exercise_9_the_thousand_miles_journey_begin_with_a_single_step">7.10. Exercise 9: The thousand miles journey begin with a single step</a></li>
+</ul>
+</li>
+<li><a href="#section-raspberry-pi-projects">8. Raspberry Pi</a>
+<ul class="sectlevel2">
+<li><a href="#_project_1_automated_garden">8.1. Project 1: Automated garden</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<style>
+.arc42help {font-size:small; width: 14px; height: 16px; overflow: hidden; position: absolute; right: 0px; padding: 2px 0px 3px 2px;}
+.arc42help::before {content: "?";}
+.arc42help:hover {width:auto; height: auto; z-index: 100; padding: 10px;}
+.arc42help:hover::before {content: "";}
+@media print {
+	.arc42help {display:hidden;}
+}
+</style>
+<div class="paragraph">
+<p><strong>About this project</strong></p>
+</div>
+<div class="paragraph lead">
+<p>Introduction to hardware and embedded</p>
+</div>
+<div class="paragraph">
+<p>Project created by Sabatmonk
+Contributors:</p>
+</div>
+<div class="paragraph">
+<p>Document Revision: 1.1 EN October 2019</p>
+</div>
+<div class="paragraph">
+<p>&#169;
+This document, as a whole or in parts, is free to use by anyone for anything. I simply ask that you
+give due credits when applicable and that you contribute to the project.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-introduction">1. Introduction to hardware</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The goal of this guide is to help you in learning embedded hardware,
+both the design and the code. In order to stay easy and accessible
+enough, the guide will use the Arduino framework and the Raspberry Pi
+hardware. This guide will be divided in 3 major sections. The
+introduction will try to provide the basis required, in terms of
+electronics and programming in order to grow by yourself after that.
+While it can be overwhelming at first, it is not harder than learning to
+sew or cook. The first "meal" might be burned or taste weird, but
+practices make perfect. One advantage that learning embedded have over
+learning to cook is that, in most cases, you can modify a faulty program
+or connection and fix the issue, you do not have to redo the whole
+recipe. Once you go through all the exercises in this guide, you should
+have the needed knowledge to turn your own idea into custom electronics.
+After all, once you know how to make a pie, you only need to change the
+fillings to create something entirely different using the same
+technique. Once you understand the core principles, we will have some
+exercises on the Arduino platform and then some on the Raspberry Pi. The
+goal of the exercises is to provide you the building block required to
+continue on your own.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-physics">2. Physics 101</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What is needed to understand in order to move forward is basic
+electricity. The best resource I could find in order to teach this
+knowledge is from the subreddit /r/explainlikeimfive, where people ask
+questions and others try to answer in a way a five years old would
+understand. While I’m not saying you have the mental power of a five
+years old, if it is aimed at them, it should be easy enough to
+understand. I’ve simplified it to what is useful to us, if you are
+interested, the full reading is a good starter on electricity and how it
+makes your TV work.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>When doing simple electronics, you can think of electricity in a way
+similar to how you think of water in pipes. Metals have "empty spaces"
+in the electron shells of their atoms that allow electrons to travel
+through in a similar way.</p>
+</div>
+<div class="paragraph">
+<p>TERMS:</p>
+</div>
+<div class="paragraph">
+<p>A power source, such as a battery, basically contains two tanks, one on
+top of the other. The top tank is full, so there is a "pressure"
+encouraging the electricity to flow into the bottom tank, if you choose
+to connect them. You can arrange multiple batteries several ways too -
+you can stack two full tanks on top and two empty tanks on bottom (this
+is called series) in order to get a higher pressure difference between
+the tanks. You can also just set them side-by-side; you’ll have the same
+pressure difference, but it will take twice as long to drain (if you use
+the same size pipe).</p>
+</div>
+<div class="paragraph">
+<p>[&#8230;&#8203;]</p>
+</div>
+<div class="paragraph">
+<p>Voltage is like water pressure. When electricity is flowing, high
+voltages will cause it to flow faster. Very, very high voltages can even
+"rupture the pipe", causing sparks.</p>
+</div>
+<div class="paragraph">
+<p>Resistance is a measurement of how difficult the wire ("pipe") makes it
+for the electricity to flow through. You can think of a high-resistance
+wire (or a resistor) as a very small pipe. Also, if you want to get a
+lot of electricity to go through a high-resistance wire, you will need a
+lot of voltage (or "pressure").</p>
+</div>
+<div class="paragraph">
+<p>Current (amps) is a measurement of how quickly the electricity is
+flowing. High voltage can increase the flow, but so can lower resistance
+(bigger pipes).</p>
+</div>
+<div class="paragraph">
+<p>A circuit is any system where the full tank and empty tank are
+connected. If they’re connected with a very large pipe, this is called a
+short circuit: the pressure will rapidly equalize, and very large number
+of electrons will flow through that pipe quickly. All the pressure
+(read: energy) from the pressurized tank will release all at once,
+making a whole lot of heat. Maybe even a bang.</p>
+</div>
+<div class="paragraph">
+<p>[&#8230;&#8203;]</p>
+</div>
+<div class="paragraph">
+<p>Transistors are like valves. A small amount of electricity applied to
+the gate will allow large amounts to flow through the input and output
+terminals.</p>
+</div>
+<div class="paragraph">
+<p>[&#8230;&#8203;]</p>
+</div>
+<div class="paragraph">
+<p>This simplified explanation works if you’re an electronics engineer&#8230;&#8203;
+even though it’s not perfectly accurate. Physicists often say that
+lay-people tend to envision particle physics like billiard balls on a
+pool table, even though that analogy breaks down when things start
+getting very small. Here’s an example of how strange electrons can be:
+The Double Slit Experiment.</p>
+</div>
+<div class="paragraph">
+<p>[&#8230;&#8203;]</p>
+</div>
+<div class="paragraph">
+<p>TL;DR: electricity works like water moving around a sealed system. It
+seems to have inertia, flow, pressure, pipe resistance, etc. Energy
+comes from the pressure and flow of electrons, not the electrons
+themselves.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> Now that we understand the
+electric circuit, there are some particularities that need to be kept in
+mind every time we work on electronics. Some are repeated but are good
+to emphasize.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each circuit must have a connection to the power, either 3.3v or 5v.
+Think of it as the water line of a washing machine.</p>
+</li>
+<li>
+<p>Each circuit must have a connection to the ground. This is the water
+out line, that empty the washing machine.</p>
+</li>
+<li>
+<p>You must always make sure you are not charged, as static discharge can
+break the fragile boards. It is recommended not to do electronics in a
+room full of carpet.</p>
+</li>
+<li>
+<p>You must always include a resistance in a circuit. While it might work
+without, it will increase the wear on whatever is connected. In most
+cases, it will result in the component burning(not in a dramatic ball of
+flames, sorry)</p>
+</li>
+<li>
+<p>When the component you try to connect has 2 connections, the power
+source is the pin you want to control it with. As an example a simple
+light is controller by its power input, if i apply power, the lights
+turn on, and vice-versa. If it has 3 connections, the power pin is used
+and the third connection is attached to the control pin you want to use.
+With most components, you can search "component name or serial
+number"+"pinout or connection" and you should find which connection is
+what. By convention, black is the ground, red, or white, is power and a
+colour(yellow and green, usually) is control. You should still verify if
+this is the case, but if you cannot find anything, it is your best bet.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want more information on the inner working of a computer chip,
+the part that store and execute the code, internet resources like
+Wikipedia can be a great place to start.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-soldering">3. Soldering</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you decide to continue on the path of electronics, learning to solder
+if a must. In our case though, we will not focus on this as we are using
+solderless board and breadboard to complete our circuits without the
+need to solder. Just know that there are many good tutorials on the
+internet and that it is not hard, it just requires practice and your
+first time might not work, or it might be ugly with 5 times too much
+tin. No one paint a perfect portrait on the first try in 5 minutes. Make
+sure your first try is not on something you cannot live without.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-programmation-basics">4. Programming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the second big chunk that overwhelms people beginning in
+electronics. For developers, i will say that the Arduino framework is
+using a c++ like language and raspberry pi run complete OSes and can use
+any language out there. For the rest of you, let’s slowly open the
+Pandora box that is programing there are two things I would like to
+mention before we go further. The first is that I am not entirely wrong
+when I call this a Pandora box: you will discover new way of hating the
+world, when you find out you were missing a semicolon, you will pull
+your hairs off after hours of searching the web for a compilation error,
+but in the end, there is not a lot of joy that competes with your design
+and your project working, as intended, "first try.” The second is that,
+while you can find the solution to most, if not all, exercises on the
+internet, on sites like stack overflow or Github, I recommend not simply
+copy and pasting it in your project. You are not doing yourself any
+favour, as it does not help you comprehend what is going on under the
+hood. Instead, take some time to understand what this piece of code is
+doing and why it’s working.</p>
+</div>
+<div class="paragraph">
+<p>There is an almost infinite number of concepts and snippet of
+information regarding software development, but in this guide, we will
+focus on those core concepts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Variables, declarations and assignations</p>
+</li>
+<li>
+<p>Functions, parameters and return value</p>
+</li>
+<li>
+<p>Control flow</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_variables_declaration_and_assignations">4.1. Variables, declaration and assignations</h3>
+<div class="paragraph">
+<p>In computer programing, a <strong>variable</strong> is a core concept that is required
+to perform almost any action. In computer terms, it is a name that we
+give to a block of memory, usually in the RAM, that can hold whatever
+information we want. In less tech words, it can be conceptualized as a
+box, holding whatever we need it to hold. Depending on the programming
+language used, those boxes can have fixed capacities or not and can
+either hold anything or only specific type of content. We call the boxes
+that need to be explicit "Typed Variables.” A typed variable is like
+having a toy box, a tool box and a bread box. All of those are boxes,
+but I would not recommend using a toolbox to store a loaf of bread and
+vice-versa.</p>
+</div>
+<div class="paragraph">
+<p>There are multiple types of variables, but these are the one you are
+most likely to work with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Character(char): represents a single character. It can be "a,”
+"A"(case is important), &#8220;\n&#8221;(it is called carrier return, as a
+reference to typographic machine. It is the equivalent of the enter key
+on your keyboard), etc.</p>
+</li>
+<li>
+<p>Boolean(bool): represents a binary state(True or False, 1 or 0, On or
+off).</p>
+</li>
+<li>
+<p>Integer(int): represents a whole number(1,2,3,-40000). There is a
+limit to possible number stored. For example, on the least powerful
+Arduino board, this number is in the range -32,768 to 32,767. In some
+case, you might see "unsigned" integer, which means they can store a
+higher number, but not a negative. Still on the least powerful Arduino,
+it can store from 0 to 65,535.</p>
+</li>
+<li>
+<p>Long: represents a bigger number, it takes more space in memory but
+can store bigger numbers. Long, like Integer, can be unsigned for longer
+range instead of the ability to store negative number. It can range from
+-2,147,483,648 to 2,147,483,647 or 0 to 4,294,967,295.</p>
+</li>
+<li>
+<p>Floating-point(float): represents a decimal number, up to a precision
+of 6 decimal digits.</p>
+</li>
+<li>
+<p>Double precision Floating-point(double): is to the float what Long is
+to int, it allows up to 15 decimal number of precision.</p>
+</li>
+<li>
+<p>Array([]): an array is a collection of variables with a number index.
+It is like a box containing smaller boxes, with number on them. If we
+have an array of int, we have a box of boxes containing number. We can
+access the numbers by "looking" in the big boxes for the correct number
+index and it will give us the number it contains. It is important to
+know that most languages begin the index at 0, but some start it at 1.
+Therefore, in most scenarios, the first box is labelled 0.</p>
+</li>
+<li>
+<p>String: represents a sentence, or a chain of character. Some languages
+have a String type, while some use characters array.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Declaration</strong> is the action of creating a variable and giving it a name.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    int this_is_a_number = 4;
+    char this_is_a_sentence[] = "hello world!";
+    long large_number = -214748367;
+    bool  this_state_is = true;
+    bool  this_one_is = false;
+    float a_decimal = 2.458;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will spend a little bit more time on the "Types" a variable can have.
+If you use a "loosely typed" language, like Python or JavaScript, all
+variables will either start with "var,” for variable, or directly the
+name. In our case, we will need to use type, especially if we use
+Arduino boards, as they use a derivative of the C++ language, which is
+"strongly typed,” thus requiring to explicitly tell the system what type
+of content the boxes have. It should be known that even in case where
+you are not required to specify a type, the system assumes it and
+defines one behind the scenes.</p>
+</div>
+<div class="paragraph">
+<p><strong>Assignation</strong> is the action of putting a value into the variable, or an
+item in the box. In the previous code
+example<a href="#declaration">[declaration</a>], we declared and assigned at the
+same time. It is good practice to always assign something during
+declaration, even if it is a placeholder. You should do so because if
+you try to access and read a value from a variable that has not been
+assigned, it will result it will either result in random data or, in
+most cases, in the forceful closure of the program AKA a "crash.”</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_functions_parameters_and_return_value">4.2. Functions, Parameters and Return Value</h3>
+<div class="paragraph">
+<p>Because most programmers are lazy, and because it is useless to redo
+something twice, most codes that exceed 5 lines in modern languages tend
+to use functions. A <strong>function</strong> is a group of statements that together
+perform a task. You put them together for ease of use later on. A
+statement is a line of code. A function will usually look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    return_type function_name( parameter list ) {
+    body of the function.
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this skeleton, the return type is what type of data the function will
+return. which, in real code, looks like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    bool Return_true() {
+    return true;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rule of thumbs is that if a section of your code appears more than
+one, it should be moved in its own function.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>parameter</strong> is a variable that is sent to the function in order for it
+to perform its duties. A function should only receive parameters that
+are required.Take this function as an example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    int Add(int first, int second) {
+    return first+second;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this function, the two parameters are the first and second number
+that will be added.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>return value</strong> is the type of the function result. In the addition
+case, the type is int (a whole number) because the addition of two whole
+numbers will give a whole number. In most cases, the return will be a
+variable type. In cases where a function does not return anything, the
+return type is "void".</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    Void do_nothing() {
+    return;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, there is still a return statement at the end, but it
+returns nothing. This simply tell the system that this function is over.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_control_flow">4.3. Control flow</h3>
+<div class="paragraph">
+<p>Control flows, like loops and conditional statements, are a way to
+control the way the application react to different input and/or events.
+A conditional statement is in the form of "If this is true, then do
+this, otherwise, do that", which, in code, look like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    If( condition == true ){
+    \\do something
+    }else{
+    //do something else
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, if the variable condition equals true, something will
+be done, if not, something else will be done. We use "==" because the
+"=" is used for assignment and we do not want to assign true to the
+variable, we want to check if it is true. Conditions can be chained for
+multiple possibilities like so:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    If( level == 1 ){
+    \\do something
+    }else if( level == 2){
+    //do something else
+    }else{
+    //if nothing matched, to this
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Loops are pieces of code that are done continuously, in a loop, as long
+as the condition defines to stop them is not met. The more common loops
+are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>for loops</p>
+</li>
+<li>
+<p>while loops</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>"For" loops looks like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    void ForLoop() {
+    for(int i=0; i&lt;100;i++){
+    //do something
+    }
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In a loop, everything between the brackets is "looped", which means it
+is done again, as long as the stopping condition is not met.Let’s
+explain the elements we saw in this.<br>
+for(<strong>int i=0</strong>; i\($&lt;$\)100;i)\{ +
+} +
+This declares a variable called i (i is a standard shortening of
+index). +
+for(int i=0; *ilatexmath:[$&lt;$]100*;i)\{<br>
+}<br>
+This defines the limit of the loop. As long of the condition is false,
+the loop will continue.<br>
+for(int i=0; i\($&lt;$\)100;*i++*)\{<br>
+}<br>
+This defines what to do at the end of each "iteration,” or loop. In this
+case, we increase the value of our index by one. This loop will be done
+a hundred times, since we start at 0 and increase the index by 1 every
+time. At the end of the last iteration (i = 99), the index will be
+increased to 100 and this will make the sopping condition (i&lt;100) false.
+This make the loop end. Another loop is the "While" loop, that look like
+this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    While(i &lt; 100){
+    //do something
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As opposed to the for loop, this one assumes the <strong>i</strong> is already created
+and initialized. You also need to increase the index manually inside the
+loop. If you do not, the condition will always be true and you are stuck
+in the loop forever. This is called an infinite loop and it prevents
+your code to do anything else. While the two examples use int as
+condition, it is possible to have any condition that can be treated as
+true or false as a stopping condition. For example, we could have this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    While(over != "finished"){
+    //do something
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example <strong>!=</strong> means "not equal.” As long as the variable "over"
+does not have the value "finished,” the loop will continue.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resources">4.4. Resources</h3>
+<div class="paragraph">
+<p>There are multiple resources that can help you in learning to code. Some
+of them are free, some require a fee, some have both, where there are
+some courses, or training, behind a payment wall. Still, the free
+section is usually enough to understand the way this resource teach and
+if it is for you. In some cases, it is enough to get you started and you
+can do the rest by yourself. If, or more realistically when, you get
+stuck, there is a website that everyone that ever coded will tell you
+about: <a href="https://stackoverflow.com/" class="bare">https://stackoverflow.com/</a>. This is a site where people ask
+questions and give answers. In most cases, your question or problem will
+already be there. Other great resources are the Arduino
+website<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>, which contain tutorials and
+documentation and the Sparkfun
+website<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>. Sparkfun is the creator of
+the raspberry pi and also contain tutorials and documentation for it.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-tools">5. tools</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_atom_text_editor_and_platformio_ide">5.1. Atom text editor and PlatformIO IDE</h3>
+<div class="paragraph">
+<p>In this guide, we will use Atom, the hackable text editor by
+Github(<a href="https://atom.io/" class="bare">https://atom.io/</a>) and add PlatformIO(<a href="https://platformio.org/" class="bare">https://platformio.org/</a>) to
+it, which is an Integrated Development Environment (IDE) for hardware
+that integrates with it. In order to compile (build) and upload code,
+you need to open the project folder with PlatformIO. If you have the
+Github folder, you have a project folder for each exercise. In order to
+open the folder follow these steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>open PlatformIO home page, if it wasn’t done by default</p>
+<div class="paragraph">
+<p><span class="image"><img src="./images/platformHome.png" alt="image"></span></p>
+</div>
+</li>
+<li>
+<p>click on open projects</p>
+<div class="paragraph">
+<p><span class="image"><img src="./images/platformopenproject.png" alt="image"></span></p>
+</div>
+</li>
+<li>
+<p>click on the folder for the project you want to open</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>All of the projects folder included are blank, except for new code, that
+is included the first time it is seen. They are in a stable state that
+compiles and works, but do nothing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_breadboard">5.2. Breadboard</h3>
+<div class="paragraph">
+<p>The breadboard, also called a solderless board, allows someone to create
+an electronic prototype without having to solder anything.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/breadboard.png" alt="A breadboard"></span></p>
+</div>
+<div class="paragraph">
+<p>On a breadboard, lines are considered a single connection. In other
+words, all connection on a single line is the same as if they were
+soldered together. The line division look like this:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/breadboard-division-lines.jpg" alt="A breadboard division"></span></p>
+</div>
+<div class="paragraph">
+<p><a id="fig:breadboard_div"></a>[fig:breadboard_div]</p>
+</div>
+<div class="paragraph">
+<p>Lines are defined by number, so line one is A,B,C,D,E as one line and
+F,G,H,I,J is another one. The two small borders are linked as columns
+instead of line and are usually used to share power and ground lines. A
+"blank" connection usually looks like this:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/blankconnection.png" alt="A blank breadboard connection"></span></p>
+</div>
+<div class="paragraph">
+<p><a id="fig:breadboard_blank"></a>[fig:breadboard_blank]</p>
+</div>
+<div class="paragraph">
+<p>This set up, in which an Arduino Nano is added, have the ground line
+following the blue line and the 5v line following the red. Whenever
+something is connected to a line connected to an Arduino pin, it is
+linked to it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_arduino_nano">5.3. Arduino Nano</h3>
+<div class="paragraph">
+<p>While there is a lot of Arduino variation, we will proceed with the Nano
+edition, for no other reasons that it is cheaper to buy usually. It does
+require you to solder it, but all exercise can be done with a regular
+Arduino Uno or Duo. The default pinout, or connection emplacement, is:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/arduino_pinout.jpg" alt="Arduino’s connection schematic"></span></p>
+</div>
+<div class="paragraph">
+<p><a id="fig:onboard_pinout"></a>[fig:onboard_pinout]</p>
+</div>
+<div class="paragraph">
+<p>For now, it is not needed to understand the difference between analogue
+and digital, as we will explain it in due time. Simply know that if the
+code use "digitalWrite" or "digitalRead", you must connect to the
+digital pin and vice-versa for analogue. A pin defines a connector, like
+Analog03 or GROUND.This will become clearer when we reach a certain
+point in the exercises.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_raspberry_pi">5.4. Raspberry pi</h3>
+<div class="paragraph">
+<p>The raspberry pi used in the exercises here is the regular model. Any
+versions works but we assume this layout:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/Raspberry-GPIO.jpg" alt="Pi’s connection schematic"></span></p>
+</div>
+<div class="paragraph">
+<p><a id="fig:rasp_pinout"></a>[fig:rasp_pinout]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resistor">5.5. Resistor</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/resistors.jpg" alt="image"></span></p>
+</div>
+<div class="paragraph">
+<p>Resistors are a key componant of an electric circuit. In all of our
+connection, a resistance is required. Where the resistance is applied
+depends on what you try to connect. Again, internet is your friend. In
+the exercises here, we will give you this information. Since it is a
+tutorial and most of the circuits will run for a short amount of time,
+any resistance provided will probably work, unless stated otherwise.
+Please remember that if you develop a long-running system at home, or
+require precision work like a temperature reading,you should use the
+correct resistance. Usually, a Google search of the sensor you want to
+use will tell you what resistance to use. For more information on
+resistances, the tutorial at Sparkfun on the subject is highly
+recommended.
+<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_led">5.6. LED</h3>
+<div class="paragraph">
+<p>The LED will serve as our example for output, as it can be both simple 2
+pins (power and ground) or 4 pins (ground and one power input per
+colour). Most others output will use either a simple 2 pins setup or use
+controls pins.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/redled.jpg" alt="2 pins led"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/rgbled.png" alt="4 pin led"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sensors">5.7. Sensors</h3>
+<div class="paragraph">
+<p>Sensors are used in this document as generic input devices, it can be a
+temperature probe, a button, etc. Sensor can be analogic or digital,
+and, in some case, both. A digital sensor use the digital pins and
+vice-versa. A tutorial on the differences between analogic and digital
+can be found on the Sparkfun website.
+<sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup> A
+gross simplification would be that digital either 1 or 0 (HIGH or LOW,
+On or OFF), representing the presence of current, and that analogic is a
+range(i.e. from 0 to 1.073) representing the voltage of the signal.
+Also, as of why ever use the "less precise" digital, it is faster to
+read ones or zeroes than to read a precise value. The reality is a
+little bit more complex(it includes things like wavelength) but this
+should suffice.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_arduino">6. Arduino</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Arduino is an open-source hardware and software company, project and
+user community that designs and manufactures single-board
+micro-controllers and micro-controller kits for building digital devices
+and interactive objects that can sense and control objects in the
+physical and digital world. Its products are licensed under the GNU
+Lesser General Public Licence (LGPL) or the GNU General Public Licence
+(GPL),[1] permitting the manufacture of Arduino boards and software
+distribution by anyone. Arduino boards are available commercially in
+already assembled form or as do-it-yourself (DIY) kits.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup></p>
+</div>
+<div class="sect2">
+<h3 id="_arduino_specificities">6.1. Arduino specificities</h3>
+<div class="paragraph">
+<p>A base Arduino project code will look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+
+    void setup() {
+
+    }
+
+    void loop() {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The setup section is where you initialize your variables that are needed
+for the whole program. Most of the code will be put inside the loop
+section. This is the equivalent of an infinite while loop that continues
+as long as the Arduino board is supplied with power. Code can be put
+outside of those two sections, but those sections need to be there. As
+we go through some exercise, it will make more and more sense.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-arduino-exercises">7. Arduino</h2>
+<div class="sectionbody">
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Arduino is an open-source hardware and software company, project and
+user community that designs and manufactures single-board
+micro-controllers and micro-controller kits for building digital devices
+and interactive objects that can sense and control objects in the
+physical and digital world. Its products are licensed under the GNU
+Lesser General Public Licence (LGPL) or the GNU General Public Licence
+(GPL),[1] permitting the manufacture of Arduino boards and software
+distribution by anyone. Arduino boards are available commercially in
+already assembled form or as do-it-yourself (DIY) kits.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p><sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup></p>
+</div>
+<div class="sect2">
+<h3 id="_arduino_specificities_2">7.1. Arduino specificities</h3>
+<div class="paragraph">
+<p>A base Arduino project code will look like this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+
+    void setup() {
+
+    }
+
+    void loop() {
+
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The setup section is where you initialize your variables that are needed
+for the whole program. Most of the code will be put inside the loop
+section. This is the equivalent of an infinite while loop that continues
+as long as the Arduino board is supplied with power. Code can be put
+outside of those two sections, but those sections need to be there. As
+we go through some exercise, it will make more and more sense.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_1_look_ma_no_connections">7.2. Exercise 1: Look Ma, no connections</h3>
+<div class="paragraph">
+<p><strong>The folder name is 01-on_board_led</strong><br>
+If you look closely enough on the micro-controller(AKA the electronic
+board), you can see a LED that is already on the board:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/arduino_onboard_led.jpg" alt="Arduino’s on-board led"></span></p>
+</div>
+<div class="paragraph">
+<p><a id="fig:onboard_led"></a>[fig:onboard_led]</p>
+</div>
+<div class="paragraph">
+<p>Since we want to take it slowly, we will start by working with this led.
+This way, we can make sure we understand the code structure before start
+playing with electronics. For this exercise, open the folder named 01 in
+the Arduino folder:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/select01.png" alt="image"></span> <a id="fig:select01"></a>[fig:select01]</p>
+</div>
+<div class="paragraph">
+<p>In this folder, go to "src" which mean sources, then open main.cpp. This
+is the code that will eventually be uploaded to the micro-controller.
+For this exercise, we will provide all of the code to write, so you can
+familiarize with the build and upload process. <strong>Building</strong> refers to the
+action of transforming the code you wrote to "assembly" code, or code
+that can be understood by the micro-controller. <strong>Uploading</strong> is the
+action of sending this assembly code to the board itself. Usually you
+need to inform PlatformIO of the type of board this code will be
+uploaded to, but in the exercise folder, we set everything up for using
+Arduino Nano. If your micro-controller is different, you need to change
+the content of platformio.ini to match your board.</p>
+</div>
+<div class="paragraph">
+<p>Here is the code to put in main.cpp:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+    int the_led = LED_BUILTIN;    // assign the number LED_BUILTIN (13) to variable the_led
+
+    void setup() {
+    pinMode(the_led, OUTPUT);     // define the_led as an output.
+    }
+
+    void loop() {
+    digitalWrite(the_led, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(1000);                   // wait for a second
+    digitalWrite(the_led, LOW);    // turn the LED off by making the voltage LOW
+    delay(1000);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the code is written, you need to build it. You can do so by
+selecting the build option in the platformio menu on top of the screen
+or clicking the check mark on the left menu. You can then upload with
+the upload option in the menu or the arrow to the right in the left
+menu.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/buildnupload.png" alt="image"></span>
+<a id="fig:buildnupload"></a>[fig:buildnupload]</p>
+</div>
+<div class="paragraph">
+<p>You can build without the board attached to the computer, but you need a
+USB connection to upload. Once uploaded, you should see the bottom led
+on the Arduino blink.</p>
+</div>
+<div class="paragraph">
+<p>Now that this is done, let’s go through what was done.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#include &lt;Arduino.h&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Include the Arduino header. Simply know that all Arduino project
+requires this.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>int the_led = LED_BUILTIN;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define a variable name the_led to hold the value of the pin we are
+using. Here, we assign the value of the internal variable LED_BUILTIN,
+which is 13. The internal led is wired to this pin. If you were using an
+eternal led connected to something like pin 12, the line would read.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>int the_led = 12;</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pinMode(the_led, OUTPUT);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This line establish the "mode" of the pin. Mode is OUTPUT, if you use
+something like a LED or a speaker, or INPUT, for something like a switch
+or a sensor that input information to your board. The variable the_led
+is replaced with LED_BUILTIN, that is replaced by the value 13 during
+build so the line evaluate to</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pinMode(13, OUTPUT);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>digitalWrite(the_led, HIGH);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This turn the led on. We use digital write since the pin is digital (D
+in D13 stands for Digital). High imply high voltage, which is ON.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>delay(1000);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make the program wait for 1000 milliseconds, or 1 second.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>digitalWrite(the_led, LOW);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Turn the led off, by settings the voltage to LOW.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_2_let_there_be_light">7.3. Exercise 2: Let there be light</h3>
+<div class="paragraph">
+<p><strong>the folder name is 02-external_led</strong><br>
+Now, it’s time to do some actual connections. In this exercise, we will
+use pretty much the same code from last time, but instead of using the
+on-board light, we will connect our own. Here is the complete circuit:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/ledconection.png" alt="image"></span>
+<a id="fig:ledconection"></a>[fig:ledconection]</p>
+</div>
+<div class="paragraph">
+<p>As stated earlier, every connection needs a resistor. In this one, the
+led is connected to pin D2. As for the code, you need to change the led
+number from LED_BUILTIN, which is 13, to the number you used (2 in this
+case). After building and uploading, your led should be blinking. You
+should also try to make both of them blink, and, for an added challenge,
+make them blink at different intervals.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_3_reading_input">7.4. Exercise 3: Reading Input</h3>
+<div class="paragraph">
+<p>We can make a blinking light, it is now time to control it. In this
+exercise, we will read input from a switch. We will provide the
+connection diagram of the switch, and the code associated with it, but
+not the interaction with the led. The end goal is to have a led light up
+when the button is pressed, and turn off when it is not. Here are 2
+tips:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the button needs to be pressed continuously in order to register</p>
+</li>
+<li>
+<p>the reading from the button should be used as a value for a
+conditional statement (see programming basics, control flows)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here is the connection diagram for a switch:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/switchconnection.png" alt="image"></span>
+<a id="fig:switchconection"></a>[fig:switchconection]</p>
+</div>
+<div class="paragraph">
+<p>Here, there are 3 connections. When the button is not pressed, there is
+a link between the control pin and the ground there is no "power.”
+Hence, the reading is 0, or LOW. When the button is pressed, there is a
+bridge that is formed with the power line and the reading becomes 1, or
+HIGH. Here is the code taking advantage of this:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+
+
+    const int button = 3;     // the  pin number of the button
+
+    int buttonState = 0;      // this is the state of the button, 0 is off 1 is on
+
+    void setup() {
+    // initialize the button as an input:
+    pinMode(button, INPUT);
+    }
+
+    void loop() {
+    // read the state of the button value, it is a digital read, the button must then be connected to a digital pin:
+    buttonState = digitalRead(button);
+
+    // a conditional should be checked here, if the button is pressed, buttonState will be HIGH (or 1, either is fine). It should look like if(buttonState == ...)
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s explain what is new:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    const int button = 3;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This assign a number to a variable, in this case the button variable.
+The new thing is the keyword "const" in front of it. For simplicity
+reasons, it was not there before. Basically, a const variable cannot be
+modified during the execution of the code. As the program advance, a
+regular variable can be modified, either by changing the value directly,
+or by doing operation on it (like ++, which add one to a variable
+containing a number). In the case of a const (for constant) variable,
+the build operation would detect the attempt to modify a constant
+variable and would fail.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    buttonState = digitalRead(button);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is our first read! This statement simply take the value of the
+button (HIGH if pressed, LOW otherwise) and assign it to the variable
+buttonState. Since HIGH and LOW are system variables (const BTW) that
+means 1 and 0 respectively, it can be assigned to button state.<br>
+You should have all the information needed to complete this exercise. In
+the end, you should have a led that goes on and off depending on whether
+a button is pressed or not. You can also try to have it blink, with a
+speed depending on the state of the button.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_4_analogue_vs_digital">7.5. Exercise 4: Analogue vs Digital</h3>
+<div class="paragraph">
+<p>In this exercise, we will use both a digital switch and an analogue
+input to control a single led. The digital switch, the button we used
+previously, will control whether the light is on or off and the analogue
+input, a potentiometer, will control the frequency of the blink. This is
+the potentiometer that we will use:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/potentiometer.jpg" alt="image"></span>
+<a id="fig:potentiometer"></a>[fig:potentiometer]</p>
+</div>
+<div class="paragraph">
+<p>Here is the connection for a potentiometer:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/potentiometerconnection.png" alt="image"></span>
+<a id="fig:potentiometerconnection"></a>[fig:potentiometerconnection]</p>
+</div>
+<div class="paragraph">
+<p>As you can see, a resistance is not required for this connection. The
+central connector is used for control, it is thus linked with an
+analogue pin, that will read the value of the potentiometer. In this
+example, we use A6.<br>
+Here is the code that use this sensor:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+    const int potentiometerPin = A6;
+    int potentiometerValue = 0; //Do you know why this is not a const?
+
+    void setup() {
+    // we do not need to set pinMode in this analogue read
+    }
+
+    void loop() {
+    potentiometerValue = analogRead(potentiometerPin); //This is the reason it is not a const
+    potentiometerValue = map(potentiometerValue, 0, 1023,0,1000); //This is explained in the guide
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let’s explain what is new:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    const int potentiometerPin = A6;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of just a number, we put A6. This is because the Arduino board
+possess both digital and analog pins and they share numbers. By default,
+the system assume that a pin is digital. If it is not, we need to inform
+it that it‘s analog, thus we use A6 instead of 6.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    potentiometerValue = analogRead(potentiometerPin);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is an analogue read, it will read a value depending on the rotation
+of the knob. An analogRead will range from 0 to 1023 (as per Arduino
+documentation). The value is then stored into an int value that was
+already declared as potentiometerValue. This variable is not a const,
+since it is modified during the operation of the code.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    potentiometerValue = map(potentiometerValue, 0, 1023,0,1000);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two new things in this statement. The first one is that we are
+assigning to a variable the modified version of itself. We are allowed
+to do so. The reason it works is that the right side of the assignment
+is evaluated and then put into the variable. If we pull back our box
+analogy, we can picture this operation as having a box containing two
+slices of bread. We take the slices out, turn them into a nice sandwich,
+and put the sandwich into the box. In this scenario, the right side of
+the assignment is the sandwich making. The second big thing is the usage
+of the map function. This is an Arduino function that is defined in
+Arduino.h, that we include every time. By the way, inclusion will be
+explained in detail later. What the map function does is take a value
+that can be in a certain range and transform it to fit another range. In
+this case, we made a range from 0 to 1023 match a range of 0 to 1000,
+but it could be any range of whole numbers. You can see this function
+as:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    map(the variable containing the whole number, minimum value it can have, maximum value it can have, minimum value we want it to have, maximum value we want it to have)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A simple example would be:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    map(3,0,10,0,100)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This would modify 3, in the range of 0 to 10, to be 30, which is the
+same relative value in the range 0 to 100. Now, you should have all the
+pieces to complete the task of controlling the blinking frequency. As a
+tip, try to put the value of potentiometerValue in delay();</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_5_let_there_be_noise">7.6. Exercise 5: Let There Be Noise</h3>
+<div class="paragraph">
+<p>Light is fun and all, but how about annoying the hell out of everyone
+next to you? Let’s do that with computer speakers. We are not talking
+about HD audio 5.1 system here, we are talking about the type of sound a
+computer makes when we press too many keys at the same time (or,
+sometimes, when a computer starts). We are talking about this:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/speaker.jpg" alt="image"></span> <a id="fig:speaker"></a>[fig:speaker]</p>
+</div>
+<div class="paragraph">
+<p>Notice the red and black cable? it follows the convention, so it
+connects like this:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/speakerconnection.png" alt="image"></span>
+<a id="fig:speakerconnection"></a>[fig:speakerconnection]</p>
+</div>
+<div class="paragraph">
+<p>Here is the code to play music:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+    #include &lt;Music.h&gt;
+    const int speakerPin = 6;
+    const int ledPin = 2;
+    Music musicPlayer = Music(speakerPin,ledPin); // This is a home-made library to play some tunes, I added the syncing of the led with the music, so it's easier for you
+    void setup() {
+    pinMode(ledPin,OUTPUT);
+    pinMode(speakerPin,OUTPUT);
+    }
+
+    void loop() {
+    musicPlayer.sing(1,100); //this start a song (the first parameter is the song number) at the given speed (the second parameter is the speed, in percentage of regular play tempo)
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Because it is quite a hassle, with lots of trial and error, the actual
+playing of music is handled by a library made for this purpose. The
+library is already in the exercise folder. Let’s go through what is
+going on:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Music.h&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This includes a library that is stored in the lib folder of our program.
+The goal of a library is to encapsulate functions and variables that
+works together to achieve a specific goal and that can be used by
+multiple programs. In our case, it adds music playing functionalities.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    Music musicPlayer = Music(speakerPin,ledPin);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This initialize an element that is in charge of playing the music. We
+call such elements classes. The definition of a class is outside the
+scope of this training, a Google search on code classes (or
+class-oriented programming) can give you more information. Just know
+that by giving the speaker and led parameters, it will manage to play
+the tunes.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    musicPlayer.sing(1,100);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This ask the musicPlayer that we initialized earlier to play a tune (the
+second, remember arrays) at 100% speed. To modify the playing speed, you
+could try changing this number. There you go, the challenge is done.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_6_turn_that_sh_up_to_11">7.7. Exercise 6: Turn that sh** up to 11</h3>
+<div class="paragraph">
+<p>This exercise teaches nothing new, but will help you master what we have
+so far. The main goal is to play music. Since there are 4 songs in the
+music library, you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have a led dedicated to each song</p>
+</li>
+<li>
+<p>Have a potentiometer that switch between songs</p>
+</li>
+<li>
+<p>Have another potentiometer that set the tempo (the speed of the tune)</p>
+</li>
+<li>
+<p>Have a switch that start the music.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The thing to watch that, in order to control the leds, you need to give
+them to the musicPlayer when you create them. You might need more than
+one musicPlayer&#8230;&#8203; Good luck.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_7_let_s_sense_the_world">7.8. Exercise 7: Let’s sense the world</h3>
+<div class="paragraph">
+<p>In this one, we are gonna sense multiple information to make a "weather"
+box. We need at least a temperature sensor and a photo resistor (it
+detects light levels). The third sensor is up to you. The goal is to
+make an rgb light change depending on the temperature, for the red
+level, light for green level and another sensor for blue level (RGB mean
+Red Gree Blue, the three primary colours).</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/photoresistor.jpeg" alt="A photo resistor"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/tempsensor.jpeg" alt="A temperature sensor"></span></p>
+</div>
+<div class="paragraph">
+<p>Here is a connection diagram of everything new:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/meteoconnection.png" alt="image"></span>
+<a id="fig:meteoconnection"></a>[fig:meteoconnection]</p>
+</div>
+<div class="paragraph">
+<p>Some points that are worth mentioning:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The photo-resistor requires both a ground and a control on one of the
+sides. There is also a resistor between them. For sensors, as opposed to
+the LEDs we have used up to now, the resistance amount is important, as
+to much will make it never detect anything and too little will make it
+to sensible. The amount in this case is 10k ohms. The colour in the
+diagram is the one you are looking for. If you do not find one, the
+readings of the sensor will need to be adjusted.</p>
+</li>
+<li>
+<p>The temperature sensor does not need a resistor</p>
+</li>
+<li>
+<p>Each control connection in the LED requires a resistor.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now for using all of this. Those are the portions of code for anything
+new:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+    #include &lt;OneWire.h&gt; //For the temperature
+    #include &lt;DallasTemperature.h&gt; // also for the temperature
+
+    #define ONE_WIRE_BUS 3 //what could a define be, it looks like its defining something...
+    const int photoPin = A5;
+    int photoValue;
+    float CValue=0;
+    float FValue=0;
+    int redPin = A10; //we need to define a pin for each colour
+    int greenPin = A8;
+    int bluePin = A6;
+
+    OneWire oneWire(ONE_WIRE_BUS); //required for temperature reading, internet will help you understand if you are interested
+
+    DallasTemperature sensors(&amp;oneWire); //required for temperature reading, internet will help you understand if you are interested
+
+    void setup(){
+    pinMode(photoValue, INPUT); //this registration is optional
+    sensors.begin(); //this is required
+    pinMode(redPin, OUTPUT); //also one per colour
+    pinMode(greenPin, OUTPUT);
+    pinMode(bluePin, OUTPUT);
+    }
+
+    void setColor(int red, int green, int blue) //This is a function, I give it to you, it's stolen from https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch
+    {
+    #ifdef COMMON_ANODE
+    red = 255 - red;
+    green = 255 - green;
+    blue = 255 - blue;
+    #endif
+    analogWrite(redPin, red); //we use analogWrite because digital is limited to 1 and 0, we want more control (0 to 255). it allows shades of colours
+    analogWrite(greenPin, green);
+    analogWrite(bluePin, blue);
+    }
+
+
+    void loop(){
+    photoValue = analogRead(photoPin); //this value can be from 0 to 1023, you will need to play around to find the tipping point from light to dark
+    //If only there was a function to make this range closer to the RGB limits (0 to 255)...cough cough exercise 4 cough cough
+    sensors.requestTemperatures(); //sensor now hold the temperature
+    CValue=sensors.getTempCByIndex(0);
+    FValue=sensors.toFahrenheit(CValue); //if you prefer American temperature
+    //note that function code must be BEFORE we use it in our code.
+    setColor(0,200,200); //this is how you call a function. Note that this one takes number from 0 to 255, as this is the range of a write function, and also the max value of a colour.
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That is a lot to cover, let’s start.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;OneWire.h&gt;
+    #include &lt;DallasTemperature.h&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those are two libraries that allow the temperature to be taken from the
+sensor without too much trouble.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #define ONE_WIRE_BUS 3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This defines a word (ONE_WIRE_BUS) to be equivalent to a value (3). It
+is not so different from when const is used, but there are 2 major
+differences, the type is not specified, and, like "#include", it doesn’t
+require a ";" at the end. By convention, definitions are in caps lock
+with underscore "_" for spaces.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    OneWire oneWire(ONE_WIRE_BUS);
+
+    DallasTemperature sensors(&amp;oneWire);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those initialize elements required for the temperature probe. More
+information can be found inline, but just know that they make your life
+easier.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    sensors.begin();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This prepares the temperature probe for temperature reading (it starts
+temperature readings).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    analogWrite(redPin, red);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to use analogWrite for precision. If we use
+digitalWrite(redpin,LOW), it will turn on the red light in the rgb LED,
+but we have no control on intensity.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    photoValue = analogRead(photoPin);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This allows us to get the value of the sensor at the pin defined by
+photoPin. it will range from 0 to 1023, the range of an analogue sensor.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    sensors.requestTemperatures();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This gets the temperatures readings from the temperature probe to the
+into the sensors object, we retrieve it with</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    CValue=sensors.getTempCByIndex(0);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which gives us the value in Celsius. You should now have all the pieces
+needed. Simply add a sensor and have the results of the sensors control
+the LED.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_8_good_night_sweet_princes_and_princesses">7.9. Exercise 8: Good night Sweet Princes and Princesses</h3>
+<div class="paragraph">
+<p>There is little more to learn for connection, it is now time to practise
+code logic. Up to this point, we did simple action/reaction logic: if A
+happens, do B. Now, we will do more complex operations. The goal here is
+to do an alarm clock, whenever a button is pressed, a timer start and
+after an amount of time determined by a potentiometer, a buzzer play a
+tune. In order to complicate stuff a little, temperature must have an
+impact on the tune play, and light level influence the speed at which it
+is played. As an extra bonus, you can add a night light function, so
+when you press the button, you have a little bit of light to reach the
+bed. For ecological reasons, we do not want the light to be on if there
+is enough ambient light.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_9_the_thousand_miles_journey_begin_with_a_single_step">7.10. Exercise 9: The thousand miles journey begin with a single step</h3>
+<div class="paragraph">
+<p>You have completed all i have to teach you, you are ready. From now on,
+you should have the necessary knowledge to connect pretty much anything
+and play with it. For any new sensor or output device, you should read
+the documentation online about it, it should be fairly easy to find the
+connection schematic and code example on how to use it. With how much
+Arduino compatible electronic parts, it should be fairly easy to find
+things to automate and project to start, and possibly never finished.
+How about a smart light, a smart fish tank, a self-watering plant&#8230;&#8203;</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-raspberry-pi-projects">8. Raspberry Pi</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Raspberry Pi is a single-board computer. It differs a lot from
+Arduino in the computing power and infrastructure sense. It contains a
+full-fledge ARM processor (quad cores in the latest versions) and up to
+a gig of ram. While in Arduino we had to code in C like language, in pi,
+we can use any language supported in ARM Linux distribution. We can do
+so because the RPi (Raspberry Pi) run full OSs and not just machine
+code. Java and .net core both have ARM Linux distribution aiming at the
+Pi, with Microsoft working on a full IoT Windows OS for the RPi. What is
+really useful with the Pi is that it can link with an Arduino with
+serial USB and interact with it, allowing to use complex automation on
+small size scale and with low power consumption, since both the RPi and
+the Arduino are powered by USB (5v currant).</p>
+</div>
+<div class="sect2">
+<h3 id="_project_1_automated_garden">8.1. Project 1: Automated garden</h3>
+<div class="paragraph">
+<p>This project will show how to use a RPi to control an arduino with
+Serial and transfert data and command. While most of the tasks could be
+done with hard-coded values with the Arduino alone, enabling
+communication between the two devices open the way to a lot of complex
+automation systems. The garden is composed of a Raspberry Pi, serving as
+a controller, an Arduino controlling sensors, pump and lights, a lamp
+and a small water pump.</p>
+</div>
+<div class="sect3">
+<h4 id="_arduino_2">8.1.1. Arduino</h4>
+<div class="paragraph">
+<p>The Arduino is in charge of taking readings from sensors and executing
+commands from the RPi. The informations the controller(in this case the
+Raspberry Pi) needs is the light level, the moisture of the ground and
+the temperature. The information the Arduino can receive is to water the
+plants and turn on or off the lamps. For the pump, we can either use an
+Arduino controlled one or a pump activated with a relay switch. Since
+the lights will already use switch, this is gonna use a smaller pump
+with direct control. A relay switch allows the controls of external
+electricaly powered device, like a lamp, by closing the electric
+circuit. It is like a controlled wall switch. Here is the Arduino wiring
+diagram, without the sensors,</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/garden.png" alt="image"></span>
+<a id="fig:gardenconnection"></a>[fig:gardenconnection]</p>
+</div>
+<div class="paragraph">
+<p>There are two things to keep in mind, they are true for this project and
+also any future projects:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>something that draw a lot of current, like a pump or a motor, should
+be powered from another source than the micro-controller. Usually, the
+red wire should be powered by an external source while the control wire
+is connected to the controller. The ground can still be attached to
+either.</p>
+</li>
+<li>
+<p>If you are not comfortable with high current, do not use relays. You
+can control household appliance with it and it is super usefull, but is
+it also dangerous if handle improperly. High voltage can kill you, never
+treat it like a game.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Arduino code will look something like that, the rellay, the pump and
+the serial connection is explained, the rest was shown earlier.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    #include &lt;Arduino.h&gt;
+    #include &lt;ArduinoJson.h&gt;
+
+    const int relay = 3;
+    const int pump = 8;
+    bool lightSwitch = 0;
+    int pumptimer = 0;
+
+    void setup() {
+        Serial.begin(9600);//this begin the Serial connection
+        pinMode(relay, OUTPUT);
+        pinMode(pump, OUTPUT);
+        while (!Serial) continue; //wait for serial port to be ready
+    }
+
+    void SendData(int temperature, int light, int moisture){
+        StaticJsonBuffer&lt;200&gt; jsonBuffer; //this might need to grow bigger if there is more sensors this is the byte size of the JsonArray
+
+        JsonObject&amp; root = jsonBuffer.createObject();
+        JsonArray&amp; data = root.createNestedArray("data");
+
+        JsonObject&amp; tempSensor = jsonBuffer.createObject();
+        tempSensor["sensor"] = "temperature";
+        tempSensor["reading"] = temperature;
+        data.add(tempSensor);
+
+        JsonObject&amp; moistSensor = jsonBuffer.createObject();
+        moistSensor["sensor"] = "moisture";
+        moistSensor["reading"] = moisture;
+        data.add(moistSensor);
+
+        JsonObject&amp; LightSensor = jsonBuffer.createObject();
+        LightSensor["sensor"] = "light";
+        LightSensor["reading"] = light;
+        data.add(LightSensor);
+        root.printTo(Serial);// This prints the json data to the serial port*/
+    }
+    void ReceiveData(){
+        //this assume this data format {"light":1,"pump":2}
+        StaticJsonBuffer&lt;200&gt; reception;
+        JsonObject&amp; received = reception.parseObject(Serial);
+        lightSwitch = received["light"]; //1 == lights on
+        pumptimer = received["pump"]; //assumes the controller return a value representing the seconds pumps should run*/
+    }
+
+    void loop() {
+        SendData(15, 100, 90);
+        while(Serial.available() == 0){} //wait for serial data
+        ReceiveData();
+        /*
+        digitalWrite(relay, HIGH);//complete the circuit, turn the light on
+        digitalWrite(relay, LOW);//close the light
+        digitalWrite(pump, HIGH);//complete the circuit, start the pump
+        digitalWrite(pump, LOW);//stop the pump
+        */
+        digitalWrite(relay, lightSwitch);
+        if(pumptimer&gt;0){
+            digitalWrite(13, HIGH);
+            delay(pumptimer*1000);//convert to milliseconds
+            digitalWrite(13, LOW);
+        }
+
+    }</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rpi">8.1.2. RPi</h4>
+<div class="paragraph">
+<p>This assume you have a Raspberry Pi with an OS installed, you can use
+<a href="https://www.raspberrypi.org/downloads/raspbian/">the raspian
+distribution</a>. Once this is installed, you can use the programming
+langage of your choice. For ease of use, we will use python. At this
+point, we are doing regular programmation, without the sensors, but
+using serial connection to talk to the Arduino, that have all the
+sensor. Here is a python file that interact with the Arduino</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>    import json
+    import serial
+    import time
+
+    ser = serial.Serial('/dev/ttyUSB0', 9600, timeout = 1) //this assume no other usb serial connection are actives
+    temperature = 0
+    lightLevel = 0
+    readOut = 0   #chars waiting from laser range finder
+
+    print ("Starting up")
+    connected = False
+
+    while True:
+        while True:
+            try:
+                print ("Attempt to Read")
+                readOut = ser.readline()
+                jsonDecoded = json.loads(readOut)
+                print ("Reading: ", jsonDecoded)
+                #temperature = jsonDecoded["light"]
+            break
+            except:
+            time.sleep(10)
+            pass
+        commands = {
+        "light":1,
+        "pump":2
+        }
+        print ("Writing: ",  commands)
+        ser.write(json.dumps(commands).encode())
+        time.sleep(10)
+        ser.flush() #flush the buffer</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_connecting_both">8.1.3. Connecting both</h4>
+<div class="paragraph">
+<p>Plug the USB cable from the RPi to the Arduino and start the Python
+code. Done.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. user KippTheKidd @ <a href="https://www.reddit.com/r/explainlikeimfive/comments/1bx4b4/explain_like_im_five_how_electricity_really_works\/">Explain like I’m five: how electricity really works</a>
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://www.arduino.cc/" class="bare">https://www.arduino.cc/</a>
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. <a href="https://www.sparkfun.com" class="bare">https://www.sparkfun.com</a>
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. <a href="https://learn.sparkfun.com/tutorials/resistors/all" class="bare">https://learn.sparkfun.com/tutorials/resistors/all</a>
+</div>
+<div class="footnote" id="_footnote_5">
+<a href="#_footnoteref_5">5</a>. <a href="https://learn.sparkfun.com/tutorials/analog-vs-digital/all" class="bare">https://learn.sparkfun.com/tutorials/analog-vs-digital/all</a>
+</div>
+<div class="footnote" id="_footnote_6">
+<a href="#_footnoteref_6">6</a>. <a href="https://en.wikipedia.org/wiki/Arduino">Wikipedia</a>
+</div>
+<div class="footnote" id="_footnote_7">
+<a href="#_footnoteref_7">7</a>. <a href="https://en.wikipedia.org/wiki/Arduino">Wikipedia</a>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-10-13 12:43:15 EDT
+</div>
+</div>
+</body>
+</html>

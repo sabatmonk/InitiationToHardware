@@ -1,0 +1,21 @@
+[[section-introduction]]
+== Introduction to hardware
+The goal of this guide is to help you in learning embedded hardware,
+both the design and the code. In order to stay easy and accessible
+enough, the guide will use the Arduino framework and the Raspberry Pi
+hardware. This guide will be divided in 3 major sections. The
+introduction will try to provide the basis required, in terms of
+electronics and programming in order to grow by yourself after that.
+While it can be overwhelming at first, it is not harder than learning to
+sew or cook. The first "meal" might be burned or taste weird, but
+practices make perfect. One advantage that learning embedded have over
+learning to cook is that, in most cases, you can modify a faulty program
+or connection and fix the issue, you do not have to redo the whole
+recipe. Once you go through all the exercises in this guide, you should
+have the needed knowledge to turn your own idea into custom electronics.
+After all, once you know how to make a pie, you only need to change the
+fillings to create something entirely different using the same
+technique. Once you understand the core principles, we will have some
+exercises on the Arduino platform and then some on the Raspberry Pi. The
+goal of the exercises is to provide you the building block required to
+continue on your own.

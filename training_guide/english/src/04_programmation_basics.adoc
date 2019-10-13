@@ -1,0 +1,271 @@
+[[section-programmation-basics]]
+== Programming
+
+This is the second big chunk that overwhelms people beginning in
+electronics. For developers, i will say that the Arduino framework is
+using a c++ like language and raspberry pi run complete OSes and can use
+any language out there. For the rest of you, let’s slowly open the
+Pandora box that is programing there are two things I would like to
+mention before we go further. The first is that I am not entirely wrong
+when I call this a Pandora box: you will discover new way of hating the
+world, when you find out you were missing a semicolon, you will pull
+your hairs off after hours of searching the web for a compilation error,
+but in the end, there is not a lot of joy that competes with your design
+and your project working, as intended, "first try.” The second is that,
+while you can find the solution to most, if not all, exercises on the
+internet, on sites like stack overflow or Github, I recommend not simply
+copy and pasting it in your project. You are not doing yourself any
+favour, as it does not help you comprehend what is going on under the
+hood. Instead, take some time to understand what this piece of code is
+doing and why it’s working.
+
+There is an almost infinite number of concepts and snippet of
+information regarding software development, but in this guide, we will
+focus on those core concepts:
+
+* Variables, declarations and assignations
+* Functions, parameters and return value
+* Control flow
+
+=== Variables, declaration and assignations
+
+In computer programing, a *variable* is a core concept that is required
+to perform almost any action. In computer terms, it is a name that we
+give to a block of memory, usually in the RAM, that can hold whatever
+information we want. In less tech words, it can be conceptualized as a
+box, holding whatever we need it to hold. Depending on the programming
+language used, those boxes can have fixed capacities or not and can
+either hold anything or only specific type of content. We call the boxes
+that need to be explicit "Typed Variables.” A typed variable is like
+having a toy box, a tool box and a bread box. All of those are boxes,
+but I would not recommend using a toolbox to store a loaf of bread and
+vice-versa.
+
+There are multiple types of variables, but these are the one you are
+most likely to work with:
+
+* Character(char): represents a single character. It can be "a,”
+"A"(case is important), "`+\n+`"(it is called carrier return, as a
+reference to typographic machine. It is the equivalent of the enter key
+on your keyboard), etc.
+* Boolean(bool): represents a binary state(True or False, 1 or 0, On or
+off).
+* Integer(int): represents a whole number(1,2,3,-40000). There is a
+limit to possible number stored. For example, on the least powerful
+Arduino board, this number is in the range -32,768 to 32,767. In some
+case, you might see "unsigned" integer, which means they can store a
+higher number, but not a negative. Still on the least powerful Arduino,
+it can store from 0 to 65,535.
+* Long: represents a bigger number, it takes more space in memory but
+can store bigger numbers. Long, like Integer, can be unsigned for longer
+range instead of the ability to store negative number. It can range from
+-2,147,483,648 to 2,147,483,647 or 0 to 4,294,967,295.
+* Floating-point(float): represents a decimal number, up to a precision
+of 6 decimal digits.
+* Double precision Floating-point(double): is to the float what Long is
+to int, it allows up to 15 decimal number of precision.
+* Array([]): an array is a collection of variables with a number index.
+It is like a box containing smaller boxes, with number on them. If we
+have an array of int, we have a box of boxes containing number. We can
+access the numbers by "looking" in the big boxes for the correct number
+index and it will give us the number it contains. It is important to
+know that most languages begin the index at 0, but some start it at 1.
+Therefore, in most scenarios, the first box is labelled 0.
+* String: represents a sentence, or a chain of character. Some languages
+have a String type, while some use characters array.
+
+*Declaration* is the action of creating a variable and giving it a name.
+
+....
+    int this_is_a_number = 4;
+    char this_is_a_sentence[] = "hello world!";
+    long large_number = -214748367;
+    bool  this_state_is = true;
+    bool  this_one_is = false;
+    float a_decimal = 2.458;
+....
+
+We will spend a little bit more time on the "Types" a variable can have.
+If you use a "loosely typed" language, like Python or JavaScript, all
+variables will either start with "var,” for variable, or directly the
+name. In our case, we will need to use type, especially if we use
+Arduino boards, as they use a derivative of the C++ language, which is
+"strongly typed,” thus requiring to explicitly tell the system what type
+of content the boxes have. It should be known that even in case where
+you are not required to specify a type, the system assumes it and
+defines one behind the scenes.
+
+*Assignation* is the action of putting a value into the variable, or an
+item in the box. In the previous code
+examplelink:#declaration[[declaration]], we declared and assigned at the
+same time. It is good practice to always assign something during
+declaration, even if it is a placeholder. You should do so because if
+you try to access and read a value from a variable that has not been
+assigned, it will result it will either result in random data or, in
+most cases, in the forceful closure of the program AKA a "crash.”
+
+=== Functions, Parameters and Return Value
+
+Because most programmers are lazy, and because it is useless to redo
+something twice, most codes that exceed 5 lines in modern languages tend
+to use functions. A *function* is a group of statements that together
+perform a task. You put them together for ease of use later on. A
+statement is a line of code. A function will usually look like this:
+
+....
+    return_type function_name( parameter list ) {
+    body of the function.
+    }
+....
+
+In this skeleton, the return type is what type of data the function will
+return. which, in real code, looks like:
+
+....
+    bool Return_true() {
+    return true;
+    }
+....
+
+The rule of thumbs is that if a section of your code appears more than
+one, it should be moved in its own function.
+
+A *parameter* is a variable that is sent to the function in order for it
+to perform its duties. A function should only receive parameters that
+are required.Take this function as an example:
+
+....
+    int Add(int first, int second) {
+    return first+second;
+    }
+....
+
+In this function, the two parameters are the first and second number
+that will be added.
+
+A *return value* is the type of the function result. In the addition
+case, the type is int (a whole number) because the addition of two whole
+numbers will give a whole number. In most cases, the return will be a
+variable type. In cases where a function does not return anything, the
+return type is "void".
+
+....
+    Void do_nothing() {
+    return;
+    }
+....
+
+As you can see, there is still a return statement at the end, but it
+returns nothing. This simply tell the system that this function is over.
+
+=== Control flow
+
+Control flows, like loops and conditional statements, are a way to
+control the way the application react to different input and/or events.
+A conditional statement is in the form of "If this is true, then do
+this, otherwise, do that", which, in code, look like:
+
+....
+    If( condition == true ){
+    \\do something
+    }else{
+    //do something else
+    }
+....
+
+In this example, if the variable condition equals true, something will
+be done, if not, something else will be done. We use "==" because the
+"=" is used for assignment and we do not want to assign true to the
+variable, we want to check if it is true. Conditions can be chained for
+multiple possibilities like so:
+
+....
+    If( level == 1 ){
+    \\do something
+    }else if( level == 2){
+    //do something else
+    }else{
+    //if nothing matched, to this
+    }
+....
+
+Loops are pieces of code that are done continuously, in a loop, as long
+as the condition defines to stop them is not met. The more common loops
+are:
+
+* for loops
+* while loops
+
+"For" loops looks like this:
+
+....
+    void ForLoop() {
+    for(int i=0; i<100;i++){
+    //do something
+    }
+    }
+....
+
+In a loop, everything between the brackets is "looped", which means it
+is done again, as long as the stopping condition is not met.Let’s
+explain the elements we saw in this. +
+for(*int i=0*; ilatexmath:[$<$]100;i++)\{ +
+//do something +
+} +
+This declares a variable called i (i is a standard shortening of
+index). +
+for(int i=0; *ilatexmath:[$<$]100*;i++)\{ +
+//do something +
+} +
+This defines the limit of the loop. As long of the condition is false,
+the loop will continue. +
+for(int i=0; ilatexmath:[$<$]100;*i++*)\{ +
+//do something +
+} +
+This defines what to do at the end of each "iteration,” or loop. In this
+case, we increase the value of our index by one. This loop will be done
+a hundred times, since we start at 0 and increase the index by 1 every
+time. At the end of the last iteration (i = 99), the index will be
+increased to 100 and this will make the sopping condition (i<100) false.
+This make the loop end. Another loop is the "While" loop, that look like
+this:
+
+....
+    While(i < 100){
+    //do something
+    }
+....
+
+As opposed to the for loop, this one assumes the *i* is already created
+and initialized. You also need to increase the index manually inside the
+loop. If you do not, the condition will always be true and you are stuck
+in the loop forever. This is called an infinite loop and it prevents
+your code to do anything else. While the two examples use int as
+condition, it is possible to have any condition that can be treated as
+true or false as a stopping condition. For example, we could have this:
+
+....
+    While(over != "finished"){
+    //do something
+    }
+....
+
+In this example *!=* means "not equal.” As long as the variable "over"
+does not have the value "finished,” the loop will continue.
+
+=== Resources
+
+There are multiple resources that can help you in learning to code. Some
+of them are free, some require a fee, some have both, where there are
+some courses, or training, behind a payment wall. Still, the free
+section is usually enough to understand the way this resource teach and
+if it is for you. In some cases, it is enough to get you started and you
+can do the rest by yourself. If, or more realistically when, you get
+stuck, there is a website that everyone that ever coded will tell you
+about: https://stackoverflow.com/. This is a site where people ask
+questions and give answers. In most cases, your question or problem will
+already be there. Other great resources are the Arduino
+websitefootnote:[https://www.arduino.cc/], which contain tutorials and
+documentation and the Sparkfun
+websitefootnote:[https://www.sparkfun.com]. Sparkfun is the creator of
+the raspberry pi and also contain tutorials and documentation for it.

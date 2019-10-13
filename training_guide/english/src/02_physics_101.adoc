@@ -1,0 +1,109 @@
+[[section-physics]]
+== Physics 101
+
+What is needed to understand in order to move forward is basic
+electricity. The best resource I could find in order to teach this
+knowledge is from the subreddit /r/explainlikeimfive, where people ask
+questions and others try to answer in a way a five years old would
+understand. While I’m not saying you have the mental power of a five
+years old, if it is aimed at them, it should be easy enough to
+understand. I’ve simplified it to what is useful to us, if you are
+interested, the full reading is a good starter on electricity and how it
+makes your TV work.
+
+____
+When doing simple electronics, you can think of electricity in a way
+similar to how you think of water in pipes. Metals have "empty spaces"
+in the electron shells of their atoms that allow electrons to travel
+through in a similar way.
+
+TERMS:
+
+A power source, such as a battery, basically contains two tanks, one on
+top of the other. The top tank is full, so there is a "pressure"
+encouraging the electricity to flow into the bottom tank, if you choose
+to connect them. You can arrange multiple batteries several ways too -
+you can stack two full tanks on top and two empty tanks on bottom (this
+is called series) in order to get a higher pressure difference between
+the tanks. You can also just set them side-by-side; you’ll have the same
+pressure difference, but it will take twice as long to drain (if you use
+the same size pipe).
+
+{empty}[...]
+
+Voltage is like water pressure. When electricity is flowing, high
+voltages will cause it to flow faster. Very, very high voltages can even
+"rupture the pipe", causing sparks.
+
+Resistance is a measurement of how difficult the wire ("pipe") makes it
+for the electricity to flow through. You can think of a high-resistance
+wire (or a resistor) as a very small pipe. Also, if you want to get a
+lot of electricity to go through a high-resistance wire, you will need a
+lot of voltage (or "pressure").
+
+Current (amps) is a measurement of how quickly the electricity is
+flowing. High voltage can increase the flow, but so can lower resistance
+(bigger pipes).
+
+A circuit is any system where the full tank and empty tank are
+connected. If they’re connected with a very large pipe, this is called a
+short circuit: the pressure will rapidly equalize, and very large number
+of electrons will flow through that pipe quickly. All the pressure
+(read: energy) from the pressurized tank will release all at once,
+making a whole lot of heat. Maybe even a bang.
+
+{empty}[...]
+
+Transistors are like valves. A small amount of electricity applied to
+the gate will allow large amounts to flow through the input and output
+terminals.
+
+{empty}[...]
+
+This simplified explanation works if you’re an electronics engineer...
+even though it’s not perfectly accurate. Physicists often say that
+lay-people tend to envision particle physics like billiard balls on a
+pool table, even though that analogy breaks down when things start
+getting very small. Here’s an example of how strange electrons can be:
+The Double Slit Experiment.
+
+{empty}[...]
+
+TL;DR: electricity works like water moving around a sealed system. It
+seems to have inertia, flow, pressure, pipe resistance, etc. Energy
+comes from the pressure and flow of electrons, not the electrons
+themselves.
+____
+
+footnote:[user KippTheKidd @
+https://www.reddit.com/r/explainlikeimfive/comments/1bx4b4/explain_like_im_five_how_electricity_really_works\/[Explain
+like I’m five: how electricity really works]] Now that we understand the
+electric circuit, there are some particularities that need to be kept in
+mind every time we work on electronics. Some are repeated but are good
+to emphasize.
+
+* Each circuit must have a connection to the power, either 3.3v or 5v.
+Think of it as the water line of a washing machine.
+* Each circuit must have a connection to the ground. This is the water
+out line, that empty the washing machine.
+* You must always make sure you are not charged, as static discharge can
+break the fragile boards. It is recommended not to do electronics in a
+room full of carpet.
+* You must always include a resistance in a circuit. While it might work
+without, it will increase the wear on whatever is connected. In most
+cases, it will result in the component burning(not in a dramatic ball of
+flames, sorry)
+* When the component you try to connect has 2 connections, the power
+source is the pin you want to control it with. As an example a simple
+light is controller by its power input, if i apply power, the lights
+turn on, and vice-versa. If it has 3 connections, the power pin is used
+and the third connection is attached to the control pin you want to use.
+With most components, you can search "component name or serial
+number"+"pinout or connection" and you should find which connection is
+what. By convention, black is the ground, red, or white, is power and a
+colour(yellow and green, usually) is control. You should still verify if
+this is the case, but if you cannot find anything, it is your best bet.
+
+If you want more information on the inner working of a computer chip,
+the part that store and execute the code, internet resources like
+Wikipedia can be a great place to start.

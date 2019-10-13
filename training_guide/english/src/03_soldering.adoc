@@ -1,0 +1,11 @@
+[[section-soldering]]
+== Soldering
+
+If you decide to continue on the path of electronics, learning to solder
+if a must. In our case though, we will not focus on this as we are using
+solderless board and breadboard to complete our circuits without the
+need to solder. Just know that there are many good tutorials on the
+internet and that it is not hard, it just requires practice and your
+first time might not work, or it might be ugly with 5 times too much
+tin. No one paint a perfect portrait on the first try in 5 minutes. Make
+sure your first try is not on something you cannot live without.

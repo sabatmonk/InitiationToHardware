@@ -1,0 +1,595 @@
+[[section-arduino-exercises]]
+== Arduino
+
+____
+Arduino is an open-source hardware and software company, project and
+user community that designs and manufactures single-board
+micro-controllers and micro-controller kits for building digital devices
+and interactive objects that can sense and control objects in the
+physical and digital world. Its products are licensed under the GNU
+Lesser General Public Licence (LGPL) or the GNU General Public Licence
+(GPL),[1] permitting the manufacture of Arduino boards and software
+distribution by anyone. Arduino boards are available commercially in
+already assembled form or as do-it-yourself (DIY) kits.
+____
+
+footnote:[https://en.wikipedia.org/wiki/Arduino[Wikipedia]]
+
+=== Arduino specificities
+
+A base Arduino project code will look like this:
+
+....
+    #include <Arduino.h>
+
+    void setup() {
+
+    }
+
+    void loop() {
+
+    }
+....
+
+The setup section is where you initialize your variables that are needed
+for the whole program. Most of the code will be put inside the loop
+section. This is the equivalent of an infinite while loop that continues
+as long as the Arduino board is supplied with power. Code can be put
+outside of those two sections, but those sections need to be there. As
+we go through some exercise, it will make more and more sense.
+
+=== Exercise 1: Look Ma, no connections
+
+**The folder name is 01-on_board_led** +
+If you look closely enough on the micro-controller(AKA the electronic
+board), you can see a LED that is already on the board:
+
+image:../images/arduino_onboard_led.jpg[Arduino’s on-board led]
+
+[#fig:onboard_led]#[fig:onboard_led]#
+
+Since we want to take it slowly, we will start by working with this led.
+This way, we can make sure we understand the code structure before start
+playing with electronics. For this exercise, open the folder named 01 in
+the Arduino folder:
+
+image:../images/select01.png[image] [#fig:select01]#[fig:select01]#
+
+In this folder, go to "src" which mean sources, then open main.cpp. This
+is the code that will eventually be uploaded to the micro-controller.
+For this exercise, we will provide all of the code to write, so you can
+familiarize with the build and upload process. *Building* refers to the
+action of transforming the code you wrote to "assembly" code, or code
+that can be understood by the micro-controller. *Uploading* is the
+action of sending this assembly code to the board itself. Usually you
+need to inform PlatformIO of the type of board this code will be
+uploaded to, but in the exercise folder, we set everything up for using
+Arduino Nano. If your micro-controller is different, you need to change
+the content of platformio.ini to match your board.
+
+Here is the code to put in main.cpp:
+
+....
+    #include <Arduino.h>
+    int the_led = LED_BUILTIN;    // assign the number LED_BUILTIN (13) to variable the_led
+
+    void setup() {
+    pinMode(the_led, OUTPUT);     // define the_led as an output.
+    }
+
+    void loop() {
+    digitalWrite(the_led, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(1000);                   // wait for a second
+    digitalWrite(the_led, LOW);    // turn the LED off by making the voltage LOW
+    delay(1000);
+    }
+....
+
+Once the code is written, you need to build it. You can do so by
+selecting the build option in the platformio menu on top of the screen
+or clicking the check mark on the left menu. You can then upload with
+the upload option in the menu or the arrow to the right in the left
+menu.
+
+image:../images/buildnupload.png[image]
+[#fig:buildnupload]#[fig:buildnupload]#
+
+You can build without the board attached to the computer, but you need a
+USB connection to upload. Once uploaded, you should see the bottom led
+on the Arduino blink.
+
+Now that this is done, let’s go through what was done.
+
+....
+#include <Arduino.h>
+....
+
+Include the Arduino header. Simply know that all Arduino project
+requires this.
+
+....
+int the_led = LED_BUILTIN;
+....
+
+Define a variable name the_led to hold the value of the pin we are
+using. Here, we assign the value of the internal variable LED_BUILTIN,
+which is 13. The internal led is wired to this pin. If you were using an
+eternal led connected to something like pin 12, the line would read.
+
+....
+int the_led = 12;
+....
+
+....
+pinMode(the_led, OUTPUT);
+....
+
+This line establish the "mode" of the pin. Mode is OUTPUT, if you use
+something like a LED or a speaker, or INPUT, for something like a switch
+or a sensor that input information to your board. The variable the_led
+is replaced with LED_BUILTIN, that is replaced by the value 13 during
+build so the line evaluate to
+
+....
+pinMode(13, OUTPUT);
+....
+
+....
+digitalWrite(the_led, HIGH);
+....
+
+This turn the led on. We use digital write since the pin is digital (D
+in D13 stands for Digital). High imply high voltage, which is ON.
+
+....
+delay(1000);
+....
+
+Make the program wait for 1000 milliseconds, or 1 second.
+
+....
+digitalWrite(the_led, LOW);
+....
+
+Turn the led off, by settings the voltage to LOW.
+
+=== Exercise 2: Let there be light
+
+**the folder name is 02-external_led** +
+Now, it’s time to do some actual connections. In this exercise, we will
+use pretty much the same code from last time, but instead of using the
+on-board light, we will connect our own. Here is the complete circuit:
+
+image:../images/ledconection.png[image]
+[#fig:ledconection]#[fig:ledconection]#
+
+As stated earlier, every connection needs a resistor. In this one, the
+led is connected to pin D2. As for the code, you need to change the led
+number from LED_BUILTIN, which is 13, to the number you used (2 in this
+case). After building and uploading, your led should be blinking. You
+should also try to make both of them blink, and, for an added challenge,
+make them blink at different intervals.
+
+=== Exercise 3: Reading Input
+
+We can make a blinking light, it is now time to control it. In this
+exercise, we will read input from a switch. We will provide the
+connection diagram of the switch, and the code associated with it, but
+not the interaction with the led. The end goal is to have a led light up
+when the button is pressed, and turn off when it is not. Here are 2
+tips:
+
+* the button needs to be pressed continuously in order to register
+* the reading from the button should be used as a value for a
+conditional statement (see programming basics, control flows)
+
+Here is the connection diagram for a switch:
+
+image:../images/switchconnection.png[image]
+[#fig:switchconection]#[fig:switchconection]#
+
+Here, there are 3 connections. When the button is not pressed, there is
+a link between the control pin and the ground there is no "power.”
+Hence, the reading is 0, or LOW. When the button is pressed, there is a
+bridge that is formed with the power line and the reading becomes 1, or
+HIGH. Here is the code taking advantage of this:
+
+....
+    #include <Arduino.h>
+
+
+    const int button = 3;     // the  pin number of the button
+
+    int buttonState = 0;      // this is the state of the button, 0 is off 1 is on
+
+    void setup() {
+    // initialize the button as an input:
+    pinMode(button, INPUT);
+    }
+
+    void loop() {
+    // read the state of the button value, it is a digital read, the button must then be connected to a digital pin:
+    buttonState = digitalRead(button);
+
+    // a conditional should be checked here, if the button is pressed, buttonState will be HIGH (or 1, either is fine). It should look like if(buttonState == ...)
+    }
+....
+
+Let’s explain what is new:
+
+....
+    const int button = 3;
+....
+
+This assign a number to a variable, in this case the button variable.
+The new thing is the keyword "const" in front of it. For simplicity
+reasons, it was not there before. Basically, a const variable cannot be
+modified during the execution of the code. As the program advance, a
+regular variable can be modified, either by changing the value directly,
+or by doing operation on it (like ++, which add one to a variable
+containing a number). In the case of a const (for constant) variable,
+the build operation would detect the attempt to modify a constant
+variable and would fail.
+
+....
+    buttonState = digitalRead(button);
+....
+
+This is our first read! This statement simply take the value of the
+button (HIGH if pressed, LOW otherwise) and assign it to the variable
+buttonState. Since HIGH and LOW are system variables (const BTW) that
+means 1 and 0 respectively, it can be assigned to button state. +
+You should have all the information needed to complete this exercise. In
+the end, you should have a led that goes on and off depending on whether
+a button is pressed or not. You can also try to have it blink, with a
+speed depending on the state of the button.
+
+=== Exercise 4: Analogue vs Digital
+
+In this exercise, we will use both a digital switch and an analogue
+input to control a single led. The digital switch, the button we used
+previously, will control whether the light is on or off and the analogue
+input, a potentiometer, will control the frequency of the blink. This is
+the potentiometer that we will use:
+
+image:../images/potentiometer.jpg[image]
+[#fig:potentiometer]#[fig:potentiometer]#
+
+Here is the connection for a potentiometer:
+
+image:../images/potentiometerconnection.png[image]
+[#fig:potentiometerconnection]#[fig:potentiometerconnection]#
+
+As you can see, a resistance is not required for this connection. The
+central connector is used for control, it is thus linked with an
+analogue pin, that will read the value of the potentiometer. In this
+example, we use A6. +
+Here is the code that use this sensor:
+
+....
+    #include <Arduino.h>
+    const int potentiometerPin = A6;
+    int potentiometerValue = 0; //Do you know why this is not a const?
+
+    void setup() {
+    // we do not need to set pinMode in this analogue read
+    }
+
+    void loop() {
+    potentiometerValue = analogRead(potentiometerPin); //This is the reason it is not a const
+    potentiometerValue = map(potentiometerValue, 0, 1023,0,1000); //This is explained in the guide
+    }
+....
+
+Let’s explain what is new:
+
+....
+    const int potentiometerPin = A6;
+....
+
+Instead of just a number, we put A6. This is because the Arduino board
+possess both digital and analog pins and they share numbers. By default,
+the system assume that a pin is digital. If it is not, we need to inform
+it that it‘s analog, thus we use A6 instead of 6.
+
+....
+    potentiometerValue = analogRead(potentiometerPin);
+....
+
+This is an analogue read, it will read a value depending on the rotation
+of the knob. An analogRead will range from 0 to 1023 (as per Arduino
+documentation). The value is then stored into an int value that was
+already declared as potentiometerValue. This variable is not a const,
+since it is modified during the operation of the code.
+
+....
+    potentiometerValue = map(potentiometerValue, 0, 1023,0,1000);
+....
+
+There are two new things in this statement. The first one is that we are
+assigning to a variable the modified version of itself. We are allowed
+to do so. The reason it works is that the right side of the assignment
+is evaluated and then put into the variable. If we pull back our box
+analogy, we can picture this operation as having a box containing two
+slices of bread. We take the slices out, turn them into a nice sandwich,
+and put the sandwich into the box. In this scenario, the right side of
+the assignment is the sandwich making. The second big thing is the usage
+of the map function. This is an Arduino function that is defined in
+Arduino.h, that we include every time. By the way, inclusion will be
+explained in detail later. What the map function does is take a value
+that can be in a certain range and transform it to fit another range. In
+this case, we made a range from 0 to 1023 match a range of 0 to 1000,
+but it could be any range of whole numbers. You can see this function
+as:
+
+....
+    map(the variable containing the whole number, minimum value it can have, maximum value it can have, minimum value we want it to have, maximum value we want it to have)
+....
+
+A simple example would be:
+
+....
+    map(3,0,10,0,100)
+....
+
+This would modify 3, in the range of 0 to 10, to be 30, which is the
+same relative value in the range 0 to 100. Now, you should have all the
+pieces to complete the task of controlling the blinking frequency. As a
+tip, try to put the value of potentiometerValue in delay();
+
+=== Exercise 5: Let There Be Noise
+
+Light is fun and all, but how about annoying the hell out of everyone
+next to you? Let’s do that with computer speakers. We are not talking
+about HD audio 5.1 system here, we are talking about the type of sound a
+computer makes when we press too many keys at the same time (or,
+sometimes, when a computer starts). We are talking about this:
+
+image:../images/speaker.jpg[image] [#fig:speaker]#[fig:speaker]#
+
+Notice the red and black cable? it follows the convention, so it
+connects like this:
+
+image:../images/speakerconnection.png[image]
+[#fig:speakerconnection]#[fig:speakerconnection]#
+
+Here is the code to play music:
+
+....
+    #include <Arduino.h>
+    #include <Music.h>
+    const int speakerPin = 6;
+    const int ledPin = 2;
+    Music musicPlayer = Music(speakerPin,ledPin); // This is a home-made library to play some tunes, I added the syncing of the led with the music, so it's easier for you
+    void setup() {
+    pinMode(ledPin,OUTPUT);
+    pinMode(speakerPin,OUTPUT);
+    }
+
+    void loop() {
+    musicPlayer.sing(1,100); //this start a song (the first parameter is the song number) at the given speed (the second parameter is the speed, in percentage of regular play tempo)
+    }
+....
+
+Because it is quite a hassle, with lots of trial and error, the actual
+playing of music is handled by a library made for this purpose. The
+library is already in the exercise folder. Let’s go through what is
+going on:
+
+....
+    #include <Music.h>
+....
+
+This includes a library that is stored in the lib folder of our program.
+The goal of a library is to encapsulate functions and variables that
+works together to achieve a specific goal and that can be used by
+multiple programs. In our case, it adds music playing functionalities.
+
+....
+    Music musicPlayer = Music(speakerPin,ledPin);
+....
+
+This initialize an element that is in charge of playing the music. We
+call such elements classes. The definition of a class is outside the
+scope of this training, a Google search on code classes (or
+class-oriented programming) can give you more information. Just know
+that by giving the speaker and led parameters, it will manage to play
+the tunes.
+
+....
+    musicPlayer.sing(1,100);
+....
+
+This ask the musicPlayer that we initialized earlier to play a tune (the
+second, remember arrays) at 100% speed. To modify the playing speed, you
+could try changing this number. There you go, the challenge is done.
+
+=== Exercise 6: Turn that sh** up to 11
+
+This exercise teaches nothing new, but will help you master what we have
+so far. The main goal is to play music. Since there are 4 songs in the
+music library, you need to:
+
+* Have a led dedicated to each song
+* Have a potentiometer that switch between songs
+* Have another potentiometer that set the tempo (the speed of the tune)
+* Have a switch that start the music.
+
+The thing to watch that, in order to control the leds, you need to give
+them to the musicPlayer when you create them. You might need more than
+one musicPlayer... Good luck.
+
+=== Exercise 7: Let’s sense the world
+
+In this one, we are gonna sense multiple information to make a "weather"
+box. We need at least a temperature sensor and a photo resistor (it
+detects light levels). The third sensor is up to you. The goal is to
+make an rgb light change depending on the temperature, for the red
+level, light for green level and another sensor for blue level (RGB mean
+Red Gree Blue, the three primary colours).
+
+image:../images/photoresistor.jpeg[A photo resistor]
+
+image:../images/tempsensor.jpeg[A temperature sensor]
+
+Here is a connection diagram of everything new:
+
+image:../images/meteoconnection.png[image]
+[#fig:meteoconnection]#[fig:meteoconnection]#
+
+Some points that are worth mentioning:
+
+* The photo-resistor requires both a ground and a control on one of the
+sides. There is also a resistor between them. For sensors, as opposed to
+the LEDs we have used up to now, the resistance amount is important, as
+to much will make it never detect anything and too little will make it
+to sensible. The amount in this case is 10k ohms. The colour in the
+diagram is the one you are looking for. If you do not find one, the
+readings of the sensor will need to be adjusted.
+* The temperature sensor does not need a resistor
+* Each control connection in the LED requires a resistor.
+
+Now for using all of this. Those are the portions of code for anything
+new:
+
+....
+    #include <Arduino.h>
+    #include <OneWire.h> //For the temperature
+    #include <DallasTemperature.h> // also for the temperature
+
+    #define ONE_WIRE_BUS 3 //what could a define be, it looks like its defining something...
+    const int photoPin = A5;
+    int photoValue;
+    float CValue=0;
+    float FValue=0;
+    int redPin = A10; //we need to define a pin for each colour
+    int greenPin = A8;
+    int bluePin = A6;
+
+    OneWire oneWire(ONE_WIRE_BUS); //required for temperature reading, internet will help you understand if you are interested
+
+    DallasTemperature sensors(&oneWire); //required for temperature reading, internet will help you understand if you are interested
+
+    void setup(){
+    pinMode(photoValue, INPUT); //this registration is optional
+    sensors.begin(); //this is required
+    pinMode(redPin, OUTPUT); //also one per colour
+    pinMode(greenPin, OUTPUT);
+    pinMode(bluePin, OUTPUT);
+    }
+
+    void setColor(int red, int green, int blue) //This is a function, I give it to you, it's stolen from https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch
+    {
+    #ifdef COMMON_ANODE
+    red = 255 - red;
+    green = 255 - green;
+    blue = 255 - blue;
+    #endif
+    analogWrite(redPin, red); //we use analogWrite because digital is limited to 1 and 0, we want more control (0 to 255). it allows shades of colours
+    analogWrite(greenPin, green);
+    analogWrite(bluePin, blue);
+    }
+
+
+    void loop(){
+    photoValue = analogRead(photoPin); //this value can be from 0 to 1023, you will need to play around to find the tipping point from light to dark
+    //If only there was a function to make this range closer to the RGB limits (0 to 255)...cough cough exercise 4 cough cough
+    sensors.requestTemperatures(); //sensor now hold the temperature
+    CValue=sensors.getTempCByIndex(0);
+    FValue=sensors.toFahrenheit(CValue); //if you prefer American temperature
+    //note that function code must be BEFORE we use it in our code.
+    setColor(0,200,200); //this is how you call a function. Note that this one takes number from 0 to 255, as this is the range of a write function, and also the max value of a colour.
+    }
+....
+
+That is a lot to cover, let’s start.
+
+....
+    #include <OneWire.h>
+    #include <DallasTemperature.h>
+....
+
+Those are two libraries that allow the temperature to be taken from the
+sensor without too much trouble.
+
+....
+    #define ONE_WIRE_BUS 3
+....
+
+This defines a word (ONE_WIRE_BUS) to be equivalent to a value (3). It
+is not so different from when const is used, but there are 2 major
+differences, the type is not specified, and, like "#include", it doesn’t
+require a ";" at the end. By convention, definitions are in caps lock
+with underscore "_" for spaces.
+
+....
+    OneWire oneWire(ONE_WIRE_BUS);
+
+    DallasTemperature sensors(&oneWire);
+....
+
+Those initialize elements required for the temperature probe. More
+information can be found inline, but just know that they make your life
+easier.
+
+....
+    sensors.begin();
+....
+
+This prepares the temperature probe for temperature reading (it starts
+temperature readings).
+
+....
+    analogWrite(redPin, red);
+....
+
+We need to use analogWrite for precision. If we use
+digitalWrite(redpin,LOW), it will turn on the red light in the rgb LED,
+but we have no control on intensity.
+
+....
+    photoValue = analogRead(photoPin);
+....
+
+This allows us to get the value of the sensor at the pin defined by
+photoPin. it will range from 0 to 1023, the range of an analogue sensor.
+
+....
+    sensors.requestTemperatures();
+....
+
+This gets the temperatures readings from the temperature probe to the
+into the sensors object, we retrieve it with
+
+....
+    CValue=sensors.getTempCByIndex(0);
+....
+
+Which gives us the value in Celsius. You should now have all the pieces
+needed. Simply add a sensor and have the results of the sensors control
+the LED.
+
+=== Exercise 8: Good night Sweet Princes and Princesses
+
+There is little more to learn for connection, it is now time to practise
+code logic. Up to this point, we did simple action/reaction logic: if A
+happens, do B. Now, we will do more complex operations. The goal here is
+to do an alarm clock, whenever a button is pressed, a timer start and
+after an amount of time determined by a potentiometer, a buzzer play a
+tune. In order to complicate stuff a little, temperature must have an
+impact on the tune play, and light level influence the speed at which it
+is played. As an extra bonus, you can add a night light function, so
+when you press the button, you have a little bit of light to reach the
+bed. For ecological reasons, we do not want the light to be on if there
+is enough ambient light.
+
+=== Exercise 9: The thousand miles journey begin with a single step
+
+You have completed all i have to teach you, you are ready. From now on,
+you should have the necessary knowledge to connect pretty much anything
+and play with it. For any new sensor or output device, you should read
+the documentation online about it, it should be fairly easy to find the
+connection schematic and code example on how to use it. With how much
+Arduino compatible electronic parts, it should be fairly easy to find
+things to automate and project to start, and possibly never finished.
+How about a smart light, a smart fish tank, a self-watering plant...
