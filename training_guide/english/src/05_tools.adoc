@@ -108,6 +108,46 @@ image:../images/redled.jpg[2 pins led]
 
 image:../images/rgbled.png[4 pin led]
 
+==== Resistance
+
+When using a LED, there is a good chance that the power line that you use (usually between 3.3v and 5v)
+is higher than what the LED is capable of handling. If too much power is sent to the light, it will burn. While
+this doesn't generate fire and is not dangerous, it is still a waste of LED. In order to prevent that,
+you use a resistance in the circuit.
+
+I could teach you the mathematical equation that can gives you what resistance you use depending on
+the power you have and the LED capacity, but i never betherered learning it(or more precisely,
+remember it) and there quicker ressources availlable online, for free. One such ressource is
+the http://led.linear1.org/led.wiz[*LED series/parallel array wizard*] from LED center. You just
+need to enter your information, and it will indicate what resistance is optimal for your case.
+
+==== LED Array
+
+LED are nice, and if you are into computer gaming, you know more is always better. If you need to
+have multiple LED powered by the same input, you can place them in parrallel or in serie,
+or a mix of both. The befenits of each are describe in this table. This assume a generic 2v 20ma LED.
+
+.Table Title
+|===
+|Disposition |Current consumption |Voltage consumption
+
+|10 in serie
+|20 milliamps
+|20 volts
+
+|10 in parrallel
+|200 milliamps
+|2 volts
+3.3
+|2 series of 5 in parrallel
+|100 milliamps
+|10 volts
+|===
+
+The tool linked earlier (http://led.linear1.org/led.wiz[LED series/parallel array wizard]) will
+help you design your array. I would like to add that this tool is by no mean the only
+one availlable, simply google "led array calculator" and pick whichever you prefer.
+
 === Sensors
 
 Sensors are used in this document as generic input devices, it can be a
