@@ -4,14 +4,8 @@ image:
 
 html:
   script:
+    - ls -la
     - doctoolchain .training_guide/english generateHTML
   artifacts:
     paths:
       - "html5/*"
-
-pdf:
-  script:
-    - .training_guide/english generatePDF
-  artifacts:
-    paths:
-      - "*.pdf"
