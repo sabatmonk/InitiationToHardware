@@ -8,3 +8,9 @@ html:
   artifacts:
     paths:
       - "./training_guide/english/build/html5/*"
+pdf:
+  script:
+    - doctoolchain ./training_guide/english generatePDF
+  artifacts:
+    paths:
+      - "./training_guide/english/build/pdf/*"
