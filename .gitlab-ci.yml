@@ -1,8 +1,10 @@
-image: sabatmonk/doctoolchain-docker
+image:
+  name: sabatmonk/doctoolchain-docker
+  entrypoint: ["/bin/sh", "-c"]
 
 html:
   script:
-    - .training_guide/english generateHTML
+    - doctoolchain .training_guide/english generateHTML
   artifacts:
     paths:
       - "html5/*"
