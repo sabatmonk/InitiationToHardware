@@ -44,7 +44,7 @@ we go through some exercise, it will make more and more sense.
 If you look closely enough on the micro-controller(AKA the electronic
 board), you can see a LED that is already on the board:
 
-image:../images/arduino_onboard_led.jpg[Arduino’s on-board led]
+image:./arduino_onboard_led.jpg[Arduino’s on-board led]
 
 [#fig:onboard_led]#[fig:onboard_led]#
 
@@ -53,7 +53,7 @@ This way, we can make sure we understand the code structure before start
 playing with electronics. For this exercise, open the folder named 01 in
 the Arduino folder:
 
-image:../images/select01.png[image] [#fig:select01]#[fig:select01]#
+image:./select01.png[image] [#fig:select01]#[fig:select01]#
 
 In this folder, go to "src" which mean sources, then open main.cpp. This
 is the code that will eventually be uploaded to the micro-controller.
@@ -91,7 +91,7 @@ or clicking the check mark on the left menu. You can then upload with
 the upload option in the menu or the arrow to the right in the left
 menu.
 
-image:../images/buildnupload.png[image]
+image:./buildnupload.png[image]
 [#fig:buildnupload]#[fig:buildnupload]#
 
 You can build without the board attached to the computer, but you need a
@@ -160,10 +160,10 @@ Now, it’s time to do some actual connections. In this exercise, we will
 use pretty much the same code from last time, but instead of using the
 on-board light, we will connect our own. Here is the complete circuit:
 
-image:../images/ledconection.png[image]
+image:./ledconection.png[image]
 [#fig:ledconection]#[fig:ledconection]#
 
-As stated earlier, every connection needs a resistor. In this one, the
+As stated earlier, every connection needs a resistor(200 or 220). In this one, the
 led is connected to pin D2. As for the code, you need to change the led
 number from LED_BUILTIN, which is 13, to the number you used (2 in this
 case). After building and uploading, your led should be blinking. You
@@ -180,19 +180,18 @@ when the button is pressed, and turn off when it is not. Here are 2
 tips:
 
 * the button needs to be pressed continuously in order to register
-* the reading from the button should be used as a value for a
-conditional statement (see programming basics, control flows)
+* the reading from the button should be used as a value for a conditional statement (see programming basics, control flows)
 
 Here is the connection diagram for a switch:
 
-image:../images/switchconnection.png[image]
+image:./switchconnection.png[image]
 [#fig:switchconection]#[fig:switchconection]#
 
 Here, there are 3 connections. When the button is not pressed, there is
 a link between the control pin and the ground there is no "power.”
 Hence, the reading is 0, or LOW. When the button is pressed, there is a
 bridge that is formed with the power line and the reading becomes 1, or
-HIGH. Here is the code taking advantage of this:
+HIGH. The resistor is 10k. Here is the code taking advantage of this:
 
 ....
     #include <Arduino.h>
@@ -252,12 +251,12 @@ previously, will control whether the light is on or off and the analogue
 input, a potentiometer, will control the frequency of the blink. This is
 the potentiometer that we will use:
 
-image:../images/potentiometer.jpg[image]
+image:./potentiometer.jpg[image]
 [#fig:potentiometer]#[fig:potentiometer]#
 
 Here is the connection for a potentiometer:
 
-image:../images/potentiometerconnection.png[image]
+image:./potentiometerconnection.png[image]
 [#fig:potentiometerconnection]#[fig:potentiometerconnection]#
 
 As you can see, a resistance is not required for this connection. The
@@ -345,12 +344,12 @@ about HD audio 5.1 system here, we are talking about the type of sound a
 computer makes when we press too many keys at the same time (or,
 sometimes, when a computer starts). We are talking about this:
 
-image:../images/speaker.jpg[image] [#fig:speaker]#[fig:speaker]#
+image:./speaker.jpg[image] [#fig:speaker]#[fig:speaker]#
 
 Notice the red and black cable? it follows the convention, so it
 connects like this:
 
-image:../images/speakerconnection.png[image]
+image:./speakerconnection.png[image]
 [#fig:speakerconnection]#[fig:speakerconnection]#
 
 Here is the code to play music:
@@ -428,13 +427,13 @@ make an rgb light change depending on the temperature, for the red
 level, light for green level and another sensor for blue level (RGB mean
 Red Gree Blue, the three primary colours).
 
-image:../images/photoresistor.jpeg[A photo resistor]
+image:./photoresistor.jpeg[A photo resistor]
 
-image:../images/tempsensor.jpeg[A temperature sensor]
+image:./tempsensor.jpeg[A temperature sensor]
 
 Here is a connection diagram of everything new:
 
-image:../images/meteoconnection.png[image]
+image:./meteoconnection.png[image]
 [#fig:meteoconnection]#[fig:meteoconnection]#
 
 Some points that are worth mentioning:
@@ -569,7 +568,119 @@ Which gives us the value in Celsius. You should now have all the pieces
 needed. Simply add a sensor and have the results of the sensors control
 the LED.
 
-=== Exercise 8: Good night Sweet Princes and Princesses
+=== Exercise 8: So close, yet so far
+A sensor that is really useful for making robots and drones is the ultrasonic sensor. It works using ultrasound to mesure distance, the same principle behind the radar. In this exercise, we will use an Ultrasonic Distance Sensor (UDS) connected to the arduino to mesure the distance of what is in front of it.
+
+image:./uds.jpg[image]
+
+==== Science!!
+
+Ultrasonic sensors use sound wave at a high frequency, above what can be heard. Those sound wave are reflected by object that comes in contact with it. The sensor then capture the sound wave that was send back from the object. Since we know the speed of sound we can culculate the distance by calculating the time it took for the sound to reach the object and get back.
+
+.https://www.maxbotix.com/articles/how-ultrasonic-sensors-work.htm[maxbotix]
+[#img-sonar]
+[caption="How sonar works, source: "]
+image::Basic-Sonar-Illustration.png[Sonar]
+
+In order to calculate the distance, we need to know that the speed of sound is 343 m/s. This mean that in 1 second, the sound wave emited by the sensor would travel 343 meters. This speed is influence by the ambiant temperature. For simplicity reasons, and because the sensor range is limited so the impact of the speed will be minimal, we can use 343m/s, which is the speed at 20°C. If you need more precision, you can use
+
+*V (m/s) = 331.3 + (0.606 × T)*
+
+Where V is the speed of sound and T is the air temperature in celsius.
+
+Since the arduino use microsecond for time calculation, and the sensor return the time it took to receive the sound wave in microseconds, we can use
+
+*Distance (cm) = Speed of sound (cm/µs) × Time (µs) / 2*
+
+We divide by 2 at the end since the sound wave needed to reach the object then come back to us, hence dividing the time by 2. The precise equation would then be
+
+*Distance (cm) = (331.3+(0.606*temperature))/10000 × Time (µs) / 2*
+
+Here is the wiring diagram for this excercise:
+
+image:./HC-SR04_connection.png[connection]
+
+Here is the code for the sensor:
+
+```
+long duration;
+int distance;
+void setup() {
+  // Define inputs and outputs:
+  pinMode(2, OUTPUT);
+  pinMode(3, INPUT);
+  //Begin Serial communication at a baudrate of 9600:
+  Serial.begin(9600);
+}
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance= duration*0.034/2;
+  Serial.print("Distance = ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  delay(50);
+}
+```
+Let's explain this code.
+
+```
+pinMode(2, OUTPUT);
+pinMode(3, INPUT);
+```
+*This assume you followed the wiring diagram*
+The sensor uses one pin for emmiting sound and one for receiving the returning wave. We need to set the pins accordingly.
+
+```
+Serial.begin(9600);
+```
+In order to obtain get the values in real time, we are going to use serial communication. Serial communication allows you to send and receive message to and from the arduino. In this exercise, we are only interested in receiving information from it. This line open serial connection (9600 is baudrate, you can google it if you want to know more, but it is the bit per second of a serial channel.) In order to receive information from this serial communication, we need to monitor the serial connection. We can do this in platformIO by using the serial monitor (the power plug icon.)
+
+We will use this later by using Serial.print().
+
+```
+digitalWrite(2, LOW);
+delayMicroseconds(5);
+```
+We make sure the trigger pin is not active before activating it.
+
+```
+digitalWrite(2, HIGH);
+delayMicroseconds(10);
+digitalWrite(2, LOW);
+duration = pulseIn(3, HIGH);
+```
+We activate the emmition of sound, then wait for sound to get to an object and back, then read the value of the echo pin. This gives us the time it took for sound to get back. PulseIn() is a function that calculate the time it took for the echo pin to go from HIGH to LOW, which indicate that sound came back.
+
+```
+distance= duration*0.034/2;
+```
+We use the equation from earlier to calculate the distance in centimeter.
+
+```
+Serial.print("Distance = ");
+Serial.print(distance);
+Serial.println(" cm");
+```
+We use our serial channel to send the results to your computer.
+
+```
+delay(50)
+```
+We wait for a little, since this is using time to calculate distance, we must wait a little, or we could get rubish wave back from earlier scans.
+
+
+=== Exercise 9: Talk to me!!!
+We recently learned how to use serial communication to show information. This have the drawback of requiring you to have a constant cable from your arduino to your pc. We can avoid this by displaying information on a screen instead of your computer.
+
+Our secret weapon is this lcd screen:
+
+=== Exercise 10: Good night Sweet Princes and Princesses
 
 There is little more to learn for connection, it is now time to practise
 code logic. Up to this point, we did simple action/reaction logic: if A
@@ -583,13 +694,13 @@ when you press the button, you have a little bit of light to reach the
 bed. For ecological reasons, we do not want the light to be on if there
 is enough ambient light.
 
-=== Exercise 9: The thousand miles journey begin with a single step
+=== Exercise 11: The thousand miles journey begin with a single step
 
 You have completed all i have to teach you, you are ready. From now on,
 you should have the necessary knowledge to connect pretty much anything
 and play with it. For any new sensor or output device, you should read
 the documentation online about it, it should be fairly easy to find the
 connection schematic and code example on how to use it. With how much
-Arduino compatible electronic parts, it should be fairly easy to find
-things to automate and project to start, and possibly never finished.
+Arduino compatible electronic parts there are on the internet, it should be fairly easy to find
+things to automate and project to start, and possibly never finish.
 How about a smart light, a smart fish tank, a self-watering plant...
