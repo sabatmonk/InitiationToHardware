@@ -519,7 +519,7 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1><span class="image"><img src="images/arc42-logo.png" alt="arc42"></span> Introduction to hardware</h1>
+<h1>Introduction to hardware</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -560,8 +560,10 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_exercise_5_let_there_be_noise">7.6. Exercise 5: Let There Be Noise</a></li>
 <li><a href="#_exercise_6_turn_that_sh_up_to_11">7.7. Exercise 6: Turn that sh** up to 11</a></li>
 <li><a href="#_exercise_7_let_s_sense_the_world">7.8. Exercise 7: Let’s sense the world</a></li>
-<li><a href="#_exercise_8_good_night_sweet_princes_and_princesses">7.9. Exercise 8: Good night Sweet Princes and Princesses</a></li>
-<li><a href="#_exercise_9_the_thousand_miles_journey_begin_with_a_single_step">7.10. Exercise 9: The thousand miles journey begin with a single step</a></li>
+<li><a href="#_exercise_8_so_close_yet_so_far">7.9. Exercise 8: So close, yet so far</a></li>
+<li><a href="#_exercise_9_talk_to_me">7.10. Exercise 9: Talk to me!!!</a></li>
+<li><a href="#_exercise_10_good_night_sweet_princes_and_princesses">7.11. Exercise 10: Good night Sweet Princes and Princesses</a></li>
+<li><a href="#_exercise_11_the_thousand_miles_journey_begin_with_a_single_step">7.12. Exercise 11: The thousand miles journey begin with a single step</a></li>
 </ul>
 </li>
 <li><a href="#section-raspberry-pi-projects">8. Raspberry Pi</a>
@@ -591,8 +593,10 @@ table.CodeRay td.code>pre{padding:0}
 <p>Introduction to hardware and embedded</p>
 </div>
 <div class="paragraph">
-<p>Project created by Sabatmonk
-Contributors:</p>
+<p>Project created by Sabatmonk</p>
+</div>
+<div class="paragraph">
+<p>Contributors:</p>
 </div>
 <div class="paragraph">
 <p>Document Revision: 1.1 EN October 2019</p>
@@ -1283,6 +1287,68 @@ controls pins.</p>
 <div class="paragraph">
 <p><span class="image"><img src="./images/rgbled.png" alt="4 pin led"></span></p>
 </div>
+<div class="sect3">
+<h4 id="_resistance">5.6.1. Resistance</h4>
+<div class="paragraph">
+<p>When using a LED, there is a good chance that the power line that you use (usually between 3.3v and 5v)
+is higher than what the LED is capable of handling. If too much power is sent to the light, it will burn. While
+this doesn&#8217;t generate fire and is not dangerous, it is still a waste of LED. In order to prevent that,
+you use a resistance in the circuit.</p>
+</div>
+<div class="paragraph">
+<p>I could teach you the mathematical equation that can gives you what resistance you use depending on
+the power you have and the LED capacity, but i never betherered learning it(or more precisely,
+remember it) and there quicker ressources availlable online, for free. One such ressource is
+the <a href="http://led.linear1.org/led.wiz"><strong>LED series/parallel array wizard</strong></a> from LED center. You just
+need to enter your information, and it will indicate what resistance is optimal for your case.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_led_array">5.6.2. LED Array</h4>
+<div class="paragraph">
+<p>LED are nice, and if you are into computer gaming, you know more is always better. If you need to
+have multiple LED powered by the same input, you can place them in parrallel or in serie,
+or a mix of both. The befenits of each are describe in this table. This assume a generic 2v 20ma LED.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Table Title</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Disposition</th>
+<th class="tableblock halign-left valign-top">Current consumption</th>
+<th class="tableblock halign-left valign-top">Voltage consumption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 in serie</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 milliamps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20 volts</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 in parrallel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200 milliamps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 volts
+3.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 series of 5 in parrallel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 milliamps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 volts</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The tool linked earlier (<a href="http://led.linear1.org/led.wiz">LED series/parallel array wizard</a>) will
+help you design your array. I would like to add that this tool is by no mean the only
+one availlable, simply google "led array calculator" and pick whichever you prefer.</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_sensors">5.7. Sensors</h3>
@@ -1558,7 +1624,7 @@ on-board light, we will connect our own. Here is the complete circuit:</p>
 <a id="fig:ledconection"></a>[fig:ledconection]</p>
 </div>
 <div class="paragraph">
-<p>As stated earlier, every connection needs a resistor. In this one, the
+<p>As stated earlier, every connection needs a resistor(200 or 220). In this one, the
 led is connected to pin D2. As for the code, you need to change the led
 number from LED_BUILTIN, which is 13, to the number you used (2 in this
 case). After building and uploading, your led should be blinking. You
@@ -1582,8 +1648,7 @@ tips:</p>
 <p>the button needs to be pressed continuously in order to register</p>
 </li>
 <li>
-<p>the reading from the button should be used as a value for a
-conditional statement (see programming basics, control flows)</p>
+<p>the reading from the button should be used as a value for a conditional statement (see programming basics, control flows)</p>
 </li>
 </ul>
 </div>
@@ -1599,7 +1664,7 @@ conditional statement (see programming basics, control flows)</p>
 a link between the control pin and the ground there is no "power.”
 Hence, the reading is 0, or LOW. When the button is pressed, there is a
 bridge that is formed with the power line and the reading becomes 1, or
-HIGH. Here is the code taking advantage of this:</p>
+HIGH. The resistor is 10k. Here is the code taking advantage of this:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2065,7 +2130,164 @@ the LED.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercise_8_good_night_sweet_princes_and_princesses">7.9. Exercise 8: Good night Sweet Princes and Princesses</h3>
+<h3 id="_exercise_8_so_close_yet_so_far">7.9. Exercise 8: So close, yet so far</h3>
+<div class="paragraph">
+<p>A sensor that is really useful for making robots and drones is the ultrasonic sensor. It works using ultrasound to mesure distance, the same principle behind the radar. In this exercise, we will use an Ultrasonic Distance Sensor (UDS) connected to the arduino to mesure the distance of what is in front of it.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/uds.jpg" alt="image"></span></p>
+</div>
+<div class="sect3">
+<h4 id="_science">7.9.1. Science!!</h4>
+<div class="paragraph">
+<p>Ultrasonic sensors use sound wave at a high frequency, above what can be heard. Those sound wave are reflected by object that comes in contact with it. The sensor then capture the sound wave that was send back from the object. Since we know the speed of sound we can culculate the distance by calculating the time it took for the sound to reach the object and get back.</p>
+</div>
+<div id="img-sonar" class="imageblock">
+<div class="content">
+<img src="./images/Basic-Sonar-Illustration.png" alt="Sonar">
+</div>
+<div class="title">How sonar works, source: <a href="https://www.maxbotix.com/articles/how-ultrasonic-sensors-work.htm">maxbotix</a></div>
+</div>
+<div class="paragraph">
+<p>In order to calculate the distance, we need to know that the speed of sound is 343 m/s. This mean that in 1 second, the sound wave emited by the sensor would travel 343 meters. This speed is influence by the ambiant temperature. For simplicity reasons, and because the sensor range is limited so the impact of the speed will be minimal, we can use 343m/s, which is the speed at 20°C. If you need more precision, you can use</p>
+</div>
+<div class="paragraph">
+<p><strong>V (m/s) = 331.3 + (0.606 × T)</strong></p>
+</div>
+<div class="paragraph">
+<p>Where V is the speed of sound and T is the air temperature in celsius.</p>
+</div>
+<div class="paragraph">
+<p>Since the arduino use microsecond for time calculation, and the sensor return the time it took to receive the sound wave in microseconds, we can use</p>
+</div>
+<div class="paragraph">
+<p><strong>Distance (cm) = Speed of sound (cm/µs) × Time (µs) / 2</strong></p>
+</div>
+<div class="paragraph">
+<p>We divide by 2 at the end since the sound wave needed to reach the object then come back to us, hence dividing the time by 2. The precise equation would then be</p>
+</div>
+<div class="paragraph">
+<p><strong>Distance (cm) = (331.3+(0.606*temperature))/10000 × Time (µs) / 2</strong></p>
+</div>
+<div class="paragraph">
+<p>Here is the wiring diagram for this excercise:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/HC-SR04_connection.png" alt="connection"></span></p>
+</div>
+<div class="paragraph">
+<p>Here is the code for the sensor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>long duration;
+int distance;
+void setup() {
+  // Define inputs and outputs:
+  pinMode(2, OUTPUT);
+  pinMode(3, INPUT);
+  //Begin Serial communication at a baudrate of 9600:
+  Serial.begin(9600);
+}
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(5);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance= duration*0.034/2;
+  Serial.print("Distance = ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  delay(50);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s explain this code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>pinMode(2, OUTPUT);
+pinMode(3, INPUT);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>This assume you followed the wiring diagram</strong>
+The sensor uses one pin for emmiting sound and one for receiving the returning wave. We need to set the pins accordingly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>Serial.begin(9600);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to obtain get the values in real time, we are going to use serial communication. Serial communication allows you to send and receive message to and from the arduino. In this exercise, we are only interested in receiving information from it. This line open serial connection (9600 is baudrate, you can google it if you want to know more, but it is the bit per second of a serial channel.) In order to receive information from this serial communication, we need to monitor the serial connection. We can do this in platformIO by using the serial monitor (the power plug icon.)</p>
+</div>
+<div class="paragraph">
+<p>We will use this later by using Serial.print().</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>digitalWrite(2, LOW);
+delayMicroseconds(5);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We make sure the trigger pin is not active before activating it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>digitalWrite(2, HIGH);
+delayMicroseconds(10);
+digitalWrite(2, LOW);
+duration = pulseIn(3, HIGH);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We activate the emmition of sound, then wait for sound to get to an object and back, then read the value of the echo pin. This gives us the time it took for sound to get back. PulseIn() is a function that calculate the time it took for the echo pin to go from HIGH to LOW, which indicate that sound came back.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>distance= duration*0.034/2;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use the equation from earlier to calculate the distance in centimeter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>Serial.print("Distance = ");
+Serial.print(distance);
+Serial.println(" cm");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We use our serial channel to send the results to your computer.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>delay(50)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We wait for a little, since this is using time to calculate distance, we must wait a little, or we could get rubish wave back from earlier scans.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_9_talk_to_me">7.10. Exercise 9: Talk to me!!!</h3>
+<div class="paragraph">
+<p>We recently learned how to use serial communication to show information. This have the drawback of requiring you to have a constant cable from your arduino to your pc. We can avoid this by displaying information on a screen instead of your computer.</p>
+</div>
+<div class="paragraph">
+<p>Our secret weapon is this lcd screen:</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exercise_10_good_night_sweet_princes_and_princesses">7.11. Exercise 10: Good night Sweet Princes and Princesses</h3>
 <div class="paragraph">
 <p>There is little more to learn for connection, it is now time to practise
 code logic. Up to this point, we did simple action/reaction logic: if A
@@ -2081,15 +2303,15 @@ is enough ambient light.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_exercise_9_the_thousand_miles_journey_begin_with_a_single_step">7.10. Exercise 9: The thousand miles journey begin with a single step</h3>
+<h3 id="_exercise_11_the_thousand_miles_journey_begin_with_a_single_step">7.12. Exercise 11: The thousand miles journey begin with a single step</h3>
 <div class="paragraph">
 <p>You have completed all i have to teach you, you are ready. From now on,
 you should have the necessary knowledge to connect pretty much anything
 and play with it. For any new sensor or output device, you should read
 the documentation online about it, it should be fairly easy to find the
 connection schematic and code example on how to use it. With how much
-Arduino compatible electronic parts, it should be fairly easy to find
-things to automate and project to start, and possibly never finished.
+Arduino compatible electronic parts there are on the internet, it should be fairly easy to find
+things to automate and project to start, and possibly never finish.
 How about a smart light, a smart fish tank, a self-watering plant&#8230;&#8203;</p>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2321,7 +2543,7 @@ code. Done.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-10-13 12:43:15 EDT
+Last updated 2019-10-14 12:13:38 UTC
 </div>
 </div>
 </body>
