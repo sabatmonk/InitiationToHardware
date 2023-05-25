@@ -9,5 +9,6 @@ void setup() {
 }
 
 void loop() {
+    //1,2,3,4 are valid music choice
     musicPlayer.sing(3,100); //this start a song (the first parameter is the song number) at the given spped (the second parameter is the speed in percent of regular play)
 }

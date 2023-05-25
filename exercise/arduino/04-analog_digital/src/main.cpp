@@ -1,12 +1,20 @@
 #include <Arduino.h>
-const int potentiometerPin = A6;
-int potentiometerValue = 0; //Do you know why this is not a const?
+#include "Pot.h"
+#include "Led.h"
+
+Pot pot(A6,0,100); //Change A6 for the analog pin used (make sure to use A before the number). 0 and 100 are the minimum and maximum that we want to have from the potentionmeter
 
 void setup() {
-    // we do not need to set pinMode in this analog read
+    // we do not need to use begin(setting the pin mode) in analog (analog pin are input only)
 }
 
 void loop() {
-    potentiometerValue = analogRead(potentiometerPin); //This is the reason it is not a const
-    potentiometerValue = map(potentiometerValue, 0, 1023,0,1000); //This is explained in the guide
+    pot.readValue();
+    if(pot.getValue()>50){ //it will be between 0 and 100
+    
+    }else if(pot.getValue()<25){ //you can have has many "if" as you want this way, but if 2 condition are true, the first one is taken
+
+    }else{ //this will be used if the value is not higher than 50 nor smaller than 25 (so 25-50)
+
+    }
 }

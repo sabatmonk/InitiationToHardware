@@ -2,3 +2,7 @@
 .gradle/
 
 training_guide/english/build/
+
+exercise/arduino/*/.pio/build/
+
+exercise/arduino/*/.vscode/

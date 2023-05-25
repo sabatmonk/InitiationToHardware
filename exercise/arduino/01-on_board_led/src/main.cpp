@@ -1,13 +1,18 @@
 #include <Arduino.h>
-int the_led = LED_BUILTIN;    // assign the number LED_BUILTIN (13) to variable the_led
+#include "Led.h"
+int onboard_led = LED_BUILTIN;
+
+
+Led led(onboard_led); //tells the board which led to use (in this case, the onboard led) 
 
 void setup() {
-pinMode(the_led, OUTPUT);     // define the_led as an output
+    led.begin(); //important step called the initialisation. This "prepare" the led for usage later
 }
 
 void loop() {
-digitalWrite(the_led, HIGH);   // turn the LED on (HIGH is the voltage level)
-delay(1000);                   // wait for a second
-digitalWrite(the_led, LOW);    // turn the LED off by making the voltage LOW
-delay(1000);
+    led.turnOn();
+    delay(1000); //create a pause in the program, since it is in milliseconds, this means "wait 1 second before continuing" Not putting this would make the led flash so fast we would see it
+    led.turnOff();
+    delay(1000);
+    led.flash(1000); //this commands is the same as the past 4 lines
 }
